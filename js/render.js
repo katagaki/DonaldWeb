@@ -169,7 +169,7 @@ function renderDataView() {
   });
   html += `</tr></thead><tbody>`;
   sorted.forEach((item) => {
-    html += `<tr><td><div class="src-dot" style="background:${item.srcColor};display:inline-block;vertical-align:middle;margin-right:6px"></div>${item.srcLabel}</td><td class="td-name">${item.name}</td><td>${item.cal}</td><td>${item.p}</td><td class="${fatClass(item.f)}">${item.f}</td><td>${item.c}</td><td>${item.fi}</td><td>${item.cat}</td></tr>`;
+    html += `<tr><td>${item.srcLabel}</td><td class="td-name">${item.name}</td><td>${item.cal}</td><td>${item.p}</td><td class="${fatClass(item.f)}">${item.f}</td><td>${item.c}</td><td>${item.fi}</td><td>${item.cat}</td></tr>`;
   });
   html += `</tbody></table></div>`;
   return html;
