@@ -1747,6 +1747,22 @@ body {
     border-radius: 8px;
     font-size: 13px;
   }
+  .target-step-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .target-reset-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .size-btn {
+    padding: 8px 0;
+    border-radius: 8px;
+    font-size: 13px;
+  }
   .btn-clear,
   .btn-generate {
     padding: 10px;
