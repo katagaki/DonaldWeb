@@ -1115,6 +1115,9 @@ body {
   font-weight: 500;
   white-space: nowrap;
   margin-left: auto;
+  width: 60px;
+  text-align: right;
+  flex-shrink: 0;
 }
 .data-toolbar-search {
   flex: 1;
@@ -1700,13 +1703,13 @@ body {
   .main {
     grid-column: 1;
     grid-row: 1 / -1;
-    padding: calc(max(env(safe-area-inset-top), 12px) + 48px) 16px calc(56px + var(--safe-b));
+    padding: calc(max(env(safe-area-inset-top), 8px) + 48px) 16px calc(56px + var(--safe-b));
   }
   .main.main-plan {
     padding-top: 0;
   }
   .main.main-data {
-    padding: calc(max(env(safe-area-inset-top), 12px) + 48px) 0 0;
+    padding: calc(max(env(safe-area-inset-top), 8px) + 48px) 0 0;
   }
   .main.main-data .data-toolbar {
     padding: 10px 12px;
@@ -1751,7 +1754,7 @@ body {
     display: flex;
     gap: 3px;
     padding: 6px 8px;
-    padding-top: calc(max(env(safe-area-inset-top), 12px) + 48px + 6px);
+    padding-top: calc(max(env(safe-area-inset-top), 8px) + 48px + 6px);
     margin: 0 -16px 12px;
     background: linear-gradient(180deg, #c8cdd4 0%, #b0b7c0 50%, #a0a8b2 100%);
     border-bottom: 1px solid #8a929c;
