@@ -13,7 +13,9 @@ function shuffle(a) {
 
 /* Score how well adding an item moves day totals toward targets.
    Lower score = better fit. Each nutrient is weighted by how important
-   overshooting vs undershooting is (fat overshoot is penalized heavily). */
+   overshooting vs undershooting is (fat overshoot is penalized heavily).
+   When fewer meals remain, overshoot penalties escalate sharply so the
+   algorithm avoids blowing past daily limits on the last meal. */
 function scoreItem(item, daySoFar, mealsLeft) {
   const t = targets;
   const after = {
@@ -23,23 +25,24 @@ function scoreItem(item, daySoFar, mealsLeft) {
     c: daySoFar.c + item.c,
     fi: daySoFar.fi + item.fi,
   };
-  /* Budget per meal for remaining nutrients (including this meal) */
+  /* Overshoot penalties escalate as fewer meals remain to compensate */
+  const overMul = mealsLeft <= 1 ? 4 : mealsLeft <= 2 ? 2 : 1;
   let score = 0;
   /* Calories: penalize proportional distance from target */
   const calDiff = after.cal - t.cal;
-  if (calDiff > 0) score += (calDiff / t.cal) * 3;
+  if (calDiff > 0) score += (calDiff / t.cal) * 3 * overMul;
   else score += (Math.abs(calDiff) / t.cal) * 0.5;
   /* Fat: heavily penalize exceeding target */
   const fDiff = after.f - t.f;
-  if (fDiff > 0) score += (fDiff / t.f) * 8;
+  if (fDiff > 0) score += (fDiff / t.f) * 8 * overMul;
   else score += (Math.abs(fDiff) / t.f) * 0.3;
   /* Protein: reward getting closer, mild penalty for overshoot */
   const pDiff = after.p - t.p;
-  if (pDiff > 0) score += (pDiff / t.p) * 1;
+  if (pDiff > 0) score += (pDiff / t.p) * 1 * overMul;
   else score += (Math.abs(pDiff) / t.p) * 1.5;
   /* Carbs: balanced penalty */
   const cDiff = after.c - t.c;
-  if (cDiff > 0) score += (cDiff / t.c) * 2;
+  if (cDiff > 0) score += (cDiff / t.c) * 2 * overMul;
   else score += (Math.abs(cDiff) / t.c) * 0.8;
   /* Fiber: reward getting closer, low penalty for overshoot */
   const fiDiff = after.fi - t.fi;
@@ -49,11 +52,32 @@ function scoreItem(item, daySoFar, mealsLeft) {
 }
 
 /* Pick the best item from candidates, with some randomness to add variety.
-   Selects from the top candidates weighted by rank. */
+   Selects from the top candidates weighted by rank.
+   When already over a target, filters out items that would make it worse
+   beyond a tolerance threshold (20% over the daily target). */
 function pickBest(candidates, daySoFar, mealsLeft) {
   if (!candidates.length) return null;
   if (candidates.length === 1) return candidates[0];
-  const scored = candidates
+  /* Filter out items that would push any nutrient too far over target */
+  const t = targets;
+  const maxOver = 0.2; /* allow at most 20% over target */
+  let pool = candidates;
+  if (mealsLeft <= 1) {
+    const filtered = candidates.filter((item) => {
+      const after = {
+        cal: daySoFar.cal + item.cal,
+        f: daySoFar.f + item.f,
+        c: daySoFar.c + item.c,
+      };
+      return (
+        after.cal <= t.cal * (1 + maxOver) &&
+        after.f <= t.f * (1 + maxOver) &&
+        after.c <= t.c * (1 + maxOver)
+      );
+    });
+    if (filtered.length > 0) pool = filtered;
+  }
+  const scored = pool
     .map((item) => ({ item, score: scoreItem(item, daySoFar, mealsLeft) }))
     .sort((a, b) => a.score - b.score);
   /* Pick from top candidates with weighted probability (better = more likely) */
