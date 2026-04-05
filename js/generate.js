@@ -66,7 +66,6 @@ function scoreItem(item, daySoFar, mealsLeft) {
    beyond a tolerance threshold (20% over the daily target). */
 function pickBest(candidates, daySoFar, mealsLeft) {
   if (!candidates.length) return null;
-  if (candidates.length === 1) return candidates[0];
   /* Filter out items that would push any nutrient too far over target */
   const t = targets;
   /* "under" = no overshoot allowed, "close" = 20% tolerance, "over" = 50% tolerance */
@@ -77,16 +76,21 @@ function pickBest(candidates, daySoFar, mealsLeft) {
     const filtered = candidates.filter((item) => {
       const after = {
         cal: daySoFar.cal + item.cal,
+        p: daySoFar.p + item.p,
         f: daySoFar.f + item.f,
         c: daySoFar.c + item.c,
+        fi: daySoFar.fi + item.fi,
       };
       return (
         after.cal <= t.cal * (1 + maxOver) &&
+        after.p <= t.p * (1 + maxOver) &&
         after.f <= t.f * (1 + maxOver) &&
-        after.c <= t.c * (1 + maxOver)
+        after.c <= t.c * (1 + maxOver) &&
+        after.fi <= t.fi * (1 + maxOver)
       );
     });
     if (filtered.length > 0) pool = filtered;
+    else if (limitMode === "under") return null;
   }
   const scored = pool
     .map((item) => ({ item, score: scoreItem(item, daySoFar, mealsLeft) }))
