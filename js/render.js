@@ -192,6 +192,7 @@ function renderDataView() {
     return dataSort.asc ? cmp : -cmp;
   });
   html += `<div class="data-toolbar"><input class="data-toolbar-search" type="text" placeholder="検索..." value="${dataSearch}" oninput="searchData(this.value)"><span class="data-toolbar-count">${filtered.length}件</span></div>`;
+  html += `<div class="data-disclaimer">データはAIを使用して取得されたものであり、正確でない場合があります。ご利用の際は情報をご確認ください。</div>`;
   html += `<div class="data-table-wrap"><table class="data-table"><thead><tr>`;
   cols.forEach((c) => {
     const active = dataSort.col === c.k;

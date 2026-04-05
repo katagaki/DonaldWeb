@@ -1139,6 +1139,12 @@ body {
     0 0 0 2px rgba(0, 122, 255, 0.15);
 }
 
+.data-disclaimer {
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 4px 12px 0;
+}
+
 /* Data table */
 .data-table-wrap {
   overflow: auto;
