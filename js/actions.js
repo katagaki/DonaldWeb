@@ -114,7 +114,10 @@ window.openPicker = function (d, m) {
 
 window.closePicker = function () {
   const o = document.getElementById("pickerOverlay");
-  if (o) o.className = "overlay";
+  if (o) {
+    o.className = "overlay";
+    o.innerHTML = "";
+  }
 };
 
 window.addPickerItem = function (item) {

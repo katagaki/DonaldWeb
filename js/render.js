@@ -266,14 +266,34 @@ function renderPicker() {
     { k: "mcdonalds", l: "マック" },
   ];
 
-  let h = `<div class="picker"><div class="picker-header"><div class="picker-top"><button class="btn-back" onclick="closePicker()">&larr; 戻る</button><input class="picker-search" type="text" placeholder="メニューを検索..." value="${window._pickerQ}" oninput="window._pickerQ=this.value;renderPicker()"></div><div class="picker-filters">`;
+  // Only rebuild full picker if it doesn't exist yet
+  if (!o.querySelector(".picker")) {
+    let h = `<div class="picker-bg" onclick="closePicker()"></div><div class="picker"><div class="picker-header"><div class="picker-top"><button class="btn-back" onclick="closePicker()">&larr; 戻る</button><input class="picker-search" type="text" placeholder="メニューを検索..." value="${window._pickerQ}" oninput="window._pickerQ=this.value;renderPicker()"></div><div class="picker-filters">`;
+    fBtns.forEach((f) => {
+      h += `<button class="filter-btn${window._pickerFilter === f.k ? " active" : ""}" onclick="window._pickerFilter='${f.k}';renderPicker()">${f.l}</button>`;
+    });
+    h += `</div></div><div class="picker-list"><div class="picker-count">脂質順 -- ${items.length}件</div><div class="picker-items">`;
+    items.forEach((item) => {
+      h += `<button class="picker-item" onclick='addPickerItem(${JSON.stringify({ id: item.id, name: item.name, cal: item.cal, p: item.p, f: item.f, c: item.c, fi: item.fi })})'><div class="item-info"><div class="pi-name">${item.name}</div><div class="pi-macros">${item.cal}kcal タンパク質${item.p}g 脂質${item.f}g 炭水化物${item.c}g 食物繊維${item.fi}g</div></div><div class="pi-fat ${fatClass(item.f)}">脂質${item.f}g</div></button>`;
+    });
+    h += `</div></div></div>`;
+    o.innerHTML = h;
+    return;
+  }
+
+  // Update only the parts that change: filter buttons and item list
+  const filtersEl = o.querySelector(".picker-filters");
+  let fh = "";
   fBtns.forEach((f) => {
-    h += `<button class="filter-btn${window._pickerFilter === f.k ? " active" : ""}" onclick="window._pickerFilter='${f.k}';renderPicker()">${f.l}</button>`;
+    fh += `<button class="filter-btn${window._pickerFilter === f.k ? " active" : ""}" onclick="window._pickerFilter='${f.k}';renderPicker()">${f.l}</button>`;
   });
-  h += `</div></div><div class="picker-list"><div class="picker-count">脂質順 -- ${items.length}件</div><div class="picker-items">`;
+  filtersEl.innerHTML = fh;
+
+  o.querySelector(".picker-count").textContent = `脂質順 -- ${items.length}件`;
+
+  let ih = "";
   items.forEach((item) => {
-    h += `<button class="picker-item" onclick='addPickerItem(${JSON.stringify({ id: item.id, name: item.name, cal: item.cal, p: item.p, f: item.f, c: item.c, fi: item.fi })})'><div class="item-info"><div class="pi-name">${item.name}</div><div class="pi-macros">${item.cal}kcal タンパク質${item.p}g 脂質${item.f}g 炭水化物${item.c}g 食物繊維${item.fi}g</div></div><div class="pi-fat ${fatClass(item.f)}">脂質${item.f}g</div></button>`;
+    ih += `<button class="picker-item" onclick='addPickerItem(${JSON.stringify({ id: item.id, name: item.name, cal: item.cal, p: item.p, f: item.f, c: item.c, fi: item.fi })})'><div class="item-info"><div class="pi-name">${item.name}</div><div class="pi-macros">${item.cal}kcal タンパク質${item.p}g 脂質${item.f}g 炭水化物${item.c}g 食物繊維${item.fi}g</div></div><div class="pi-fat ${fatClass(item.f)}">脂質${item.f}g</div></button>`;
   });
-  h += `</div></div></div>`;
-  o.innerHTML = h;
+  o.querySelector(".picker-items").innerHTML = ih;
 }
