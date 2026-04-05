@@ -1716,6 +1716,17 @@ body {
   .picker .sheet-handle {
     margin: 8px auto 0;
   }
+  .btn-gen-primary {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .btn-settings-mobile {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
   .btn-add {
     padding: 6px 14px;
     border-radius: 8px;
@@ -1723,6 +1734,23 @@ body {
   }
   .btn-add:active {
     opacity: 1;
+  }
+  .btn-rm {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    font-size: 14px;
+  }
+  .btn-back {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .btn-clear,
+  .btn-generate {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
   }
 
   /* Hide scrollbars on mobile */
