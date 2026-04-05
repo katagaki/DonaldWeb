@@ -28,6 +28,7 @@
   --sidebar-w: 220px;
   --selection: rgba(0, 122, 255, 0.12);
   --safe-b: env(safe-area-inset-bottom, 0px);
+  --stripe: rgba(0, 0, 0, 0.03);
 }
 html,
 body {
@@ -270,7 +271,15 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   padding: calc(var(--toolbar-h) + 20px) 28px 28px;
-  background: var(--bg);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--bg) 0px,
+      var(--bg) 1px,
+      var(--stripe) 1px,
+      var(--stripe) 2px
+    ),
+    var(--bg);
 }
 
 /* Content sections */
@@ -1067,6 +1076,7 @@ body {
     --text2: #c7c7cc;
     --text3: #86868b;
     --selection: rgba(0, 122, 255, 0.2);
+    --stripe: rgba(255, 255, 255, 0.03);
   }
   .toolbar {
     background: linear-gradient(180deg, #3a3d42 0%, #28292e 50%, #1e1f23 100%);
