@@ -28,7 +28,7 @@
   --sidebar-w: 220px;
   --selection: rgba(0, 122, 255, 0.12);
   --safe-b: env(safe-area-inset-bottom, 0px);
-  --stripe: rgba(0, 0, 0, 0.03);
+  --stripe: rgba(0, 0, 0, 0.015);
 }
 html,
 body {
@@ -1125,7 +1125,7 @@ body {
     --text2: #c7c7cc;
     --text3: #86868b;
     --selection: rgba(0, 122, 255, 0.2);
-    --stripe: rgba(255, 255, 255, 0.03);
+    --stripe: rgba(255, 255, 255, 0.015);
   }
   .toolbar {
     background: linear-gradient(180deg, #3a3d42 0%, #28292e 50%, #1e1f23 100%);
