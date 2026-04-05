@@ -6,7 +6,7 @@
 }
 :root {
   --bg: #f5f5f5;
-  --bg-dark: #1e1e1e;
+  --bg-dark: #000000;
   --sidebar-bg: rgba(246, 246, 246, 0.8);
   --sidebar-border: rgba(0, 0, 0, 0.1);
   --glass: rgba(255, 255, 255, 0.7);
@@ -461,27 +461,6 @@ body {
   color: var(--text3);
 }
 
-.tips-card {
-  background: rgba(255, 204, 0, 0.06);
-  border: 0.5px solid rgba(255, 204, 0, 0.2);
-  border-radius: 10px;
-  padding: 16px 18px;
-  margin-top: 12px;
-}
-.tips-title {
-  font-size: 10px;
-  color: var(--orange);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.tips-body {
-  font-size: 12px;
-  color: var(--text2);
-  line-height: 1.8;
-}
-
 /* Overlays */
 .overlay {
   position: fixed;
@@ -869,31 +848,31 @@ body {
 /* === Dark mode === */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1e1e1e;
-    --sidebar-bg: rgba(38, 38, 38, 0.9);
-    --sidebar-border: rgba(255, 255, 255, 0.08);
-    --glass: rgba(50, 50, 52, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-solid: rgba(44, 44, 46, 0.85);
+    --bg: #000000;
+    --sidebar-bg: rgba(18, 18, 18, 0.9);
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+    --glass: rgba(28, 28, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-solid: rgba(22, 22, 24, 0.85);
     --text: #f5f5f7;
     --text2: #c7c7cc;
     --text3: #86868b;
     --selection: rgba(0, 122, 255, 0.2);
   }
   .toolbar {
-    background: rgba(38, 38, 38, 0.9);
+    background: rgba(18, 18, 18, 0.9);
   }
   .btn-gen {
-    background: linear-gradient(180deg, #3a3a3c, #2c2c2e);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(180deg, #2a2a2c, #1c1c1e);
+    border-color: rgba(255, 255, 255, 0.08);
     color: var(--text);
-    box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.4);
   }
   .btn-gen:hover {
-    background: linear-gradient(180deg, #444, #363638);
+    background: linear-gradient(180deg, #333, #262628);
   }
   .btn-gen:active {
-    background: #2a2a2c;
+    background: #1a1a1c;
   }
   .card {
     box-shadow:
@@ -901,7 +880,7 @@ body {
       0 0.5px 1px rgba(0, 0, 0, 0.15);
   }
   .macro-bar {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
   }
   .meal-item + .meal-item {
     border-top-color: rgba(255, 255, 255, 0.06);
@@ -917,8 +896,8 @@ body {
     border-bottom-color: rgba(255, 255, 255, 0.06);
   }
   .picker-header {
-    background: rgba(38, 38, 38, 0.9);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: rgba(18, 18, 18, 0.9);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
   }
   .picker {
     background: var(--bg);
@@ -949,19 +928,19 @@ body {
     background: rgba(0, 122, 255, 0.08);
   }
   .sheet {
-    background: rgba(44, 44, 46, 0.95);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(22, 22, 24, 0.95);
+    border-color: rgba(255, 255, 255, 0.08);
   }
   .sheet-targets {
     background: rgba(255, 255, 255, 0.06);
   }
   .btn-clear {
-    background: linear-gradient(180deg, #3a3a3c, #2c2c2e);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(180deg, #2a2a2c, #1c1c1e);
+    border-color: rgba(255, 255, 255, 0.08);
     color: var(--text2);
   }
   .btn-clear:hover {
-    background: linear-gradient(180deg, #444, #363638);
+    background: linear-gradient(180deg, #333, #262628);
   }
   .size-btn {
     background: rgba(255, 255, 255, 0.08);
@@ -980,13 +959,9 @@ body {
   .breakdown-row:hover {
     background: rgba(255, 255, 255, 0.04);
   }
-  .tips-card {
-    background: rgba(255, 204, 0, 0.06);
-    border-color: rgba(255, 204, 0, 0.15);
-  }
   .data-table th {
-    background: rgba(44, 44, 46, 0.95);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: rgba(22, 22, 24, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
   }
   .data-table td {
     border-bottom-color: rgba(255, 255, 255, 0.04);

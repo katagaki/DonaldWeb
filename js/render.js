@@ -238,9 +238,6 @@ function renderSummaryView() {
   });
   html += `</div>`;
 
-  // Tips
-  html += `<div class="tips-card"><div class="tips-title">TIPS</div><div class="tips-body">- noshは白身魚系が脂質6-9gで最優秀<br>- こんにゃく麺/ミネストローネで食物繊維UP<br>- セブンはもち麦おにぎり+ひじき煮が鉄板<br>- マックはハンバーガー単品(脂質9.4g)一択<br>- 脂質40g以下 / 食物繊維18g以上が目標</div></div>`;
-
   return html;
 }
 
