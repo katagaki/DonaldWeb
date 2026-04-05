@@ -648,10 +648,10 @@ body {
 .sheet input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 28px;
+  width: 36px;
   height: 28px;
   margin-top: -10px;
-  border-radius: 50%;
+  border-radius: 14px;
   background:
     radial-gradient(
       ellipse 70% 50% at 50% 25%,
@@ -677,9 +677,9 @@ body {
     0 1px 0 rgba(255, 255, 255, 0.7);
 }
 .sheet input[type="range"]::-moz-range-thumb {
-  width: 28px;
+  width: 36px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 14px;
   background:
     radial-gradient(
       ellipse 70% 50% at 50% 25%,
