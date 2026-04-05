@@ -256,7 +256,8 @@ function renderSummaryView() {
   html += `</div>`;
 
   // Sources
-  html += `<div class="card summary-card" style="margin-top:12px"><div class="macro-label">ソース内訳</div>`;
+  html += `<div class="macro-label" style="padding:0 2px;margin:12px 0 8px">ソース内訳</div>`;
+  html += `<div class="card summary-card">`;
   Object.entries(DB).forEach(([k, src]) => {
     let cnt = 0;
     plan.forEach((d) =>
