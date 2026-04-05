@@ -274,9 +274,9 @@ body {
     repeating-linear-gradient(
       90deg,
       var(--bg) 0px,
-      var(--bg) 3px,
-      var(--stripe) 3px,
-      var(--stripe) 4px
+      var(--bg) 7px,
+      var(--stripe) 7px,
+      var(--stripe) 8px
     ),
     var(--bg);
 }
