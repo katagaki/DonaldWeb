@@ -1,0 +1,139 @@
+{
+  "label": "サントリー",
+  "color": "#0068B7",
+  "source": "自動販売機",
+  "items": [
+    {
+      "id": "su1",
+      "name": "伊右衛門（600ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su2",
+      "name": "伊右衛門 特茶（500ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su3",
+      "name": "GREEN DA・KA・RA やさしい麦茶（600ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su4",
+      "name": "サントリー天然水（550ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su5",
+      "name": "GREEN DA・KA・RA（600ml）",
+      "cal": 114,
+      "p": 0,
+      "f": 0,
+      "c": 28.8,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su6",
+      "name": "なっちゃん オレンジ（425ml）",
+      "cal": 191,
+      "p": 0,
+      "f": 0,
+      "c": 48.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su7",
+      "name": "なっちゃん りんご（425ml）",
+      "cal": 200,
+      "p": 0,
+      "f": 0,
+      "c": 49.7,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su8",
+      "name": "ペプシコーラ（490ml）",
+      "cal": 235,
+      "p": 0,
+      "f": 0,
+      "c": 58.3,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su9",
+      "name": "ペプシ〈生〉ゼロ（600ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su10",
+      "name": "C.C.レモン（500ml）",
+      "cal": 200,
+      "p": 0,
+      "f": 0,
+      "c": 50.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su11",
+      "name": "オランジーナ（420ml）",
+      "cal": 176,
+      "p": 0,
+      "f": 0,
+      "c": 44.1,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "su12",
+      "name": "デカビタC（210ml）",
+      "cal": 113,
+      "p": 0,
+      "f": 0,
+      "c": 28.4,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    }
+  ]
+}
