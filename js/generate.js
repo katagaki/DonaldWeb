@@ -55,8 +55,8 @@ function scoreItem(item, daySoFar, mealsLeft) {
   else score += (Math.abs(cDiff) / t.c) * 0.8 * underMul;
   /* Fiber: reward getting closer, low penalty for overshoot */
   const fiDiff = after.fi - t.fi;
-  if (fiDiff > 0) score += (fiDiff / t.fi) * 0.3;
-  else score += (Math.abs(fiDiff) / t.fi) * 2;
+  if (fiDiff > 0) score += (fiDiff / t.fi) * 0.3 * overMul;
+  else score += (Math.abs(fiDiff) / t.fi) * 2 * underMul;
   return score;
 }
 
