@@ -26,24 +26,33 @@ function scoreItem(item, daySoFar, mealsLeft) {
     fi: daySoFar.fi + item.fi,
   };
   /* Overshoot penalties escalate as fewer meals remain to compensate */
-  const overMul = mealsLeft <= 1 ? 4 : mealsLeft <= 2 ? 2 : 1;
+  const baseOverMul = mealsLeft <= 1 ? 4 : mealsLeft <= 2 ? 2 : 1;
+  /* limitMode adjusts how aggressively overshoot is penalized:
+     "under" = stay below limit (very harsh overshoot penalty)
+     "close" = aim close to limit (default balanced behavior)
+     "over"  = okay to exceed (relaxed overshoot, penalize undershoot more) */
+  const modeMul = limitMode === "under" ? 3 : limitMode === "over" ? 0.3 : 1;
+  const overMul = baseOverMul * modeMul;
+  /* For "over" mode, reduce undershoot penalty; for "under" mode, increase it
+     to encourage picking smaller items that stay well below */
+  const underMul = limitMode === "under" ? 0.3 : limitMode === "over" ? 1.5 : 1;
   let score = 0;
   /* Calories: penalize proportional distance from target */
   const calDiff = after.cal - t.cal;
   if (calDiff > 0) score += (calDiff / t.cal) * 3 * overMul;
-  else score += (Math.abs(calDiff) / t.cal) * 0.5;
+  else score += (Math.abs(calDiff) / t.cal) * 0.5 * underMul;
   /* Fat: heavily penalize exceeding target */
   const fDiff = after.f - t.f;
   if (fDiff > 0) score += (fDiff / t.f) * 8 * overMul;
-  else score += (Math.abs(fDiff) / t.f) * 0.3;
+  else score += (Math.abs(fDiff) / t.f) * 0.3 * underMul;
   /* Protein: reward getting closer, mild penalty for overshoot */
   const pDiff = after.p - t.p;
   if (pDiff > 0) score += (pDiff / t.p) * 1 * overMul;
-  else score += (Math.abs(pDiff) / t.p) * 1.5;
+  else score += (Math.abs(pDiff) / t.p) * 1.5 * underMul;
   /* Carbs: balanced penalty */
   const cDiff = after.c - t.c;
   if (cDiff > 0) score += (cDiff / t.c) * 2 * overMul;
-  else score += (Math.abs(cDiff) / t.c) * 0.8;
+  else score += (Math.abs(cDiff) / t.c) * 0.8 * underMul;
   /* Fiber: reward getting closer, low penalty for overshoot */
   const fiDiff = after.fi - t.fi;
   if (fiDiff > 0) score += (fiDiff / t.fi) * 0.3;
@@ -60,9 +69,11 @@ function pickBest(candidates, daySoFar, mealsLeft) {
   if (candidates.length === 1) return candidates[0];
   /* Filter out items that would push any nutrient too far over target */
   const t = targets;
-  const maxOver = 0.2; /* allow at most 20% over target */
+  /* "under" = no overshoot allowed, "close" = 20% tolerance, "over" = 50% tolerance */
+  const maxOver = limitMode === "under" ? 0 : limitMode === "over" ? 0.5 : 0.2;
   let pool = candidates;
-  if (mealsLeft <= 1) {
+  /* For "under" mode, always filter; for others, only filter on last meal */
+  if (mealsLeft <= 1 || limitMode === "under") {
     const filtered = candidates.filter((item) => {
       const after = {
         cal: daySoFar.cal + item.cal,

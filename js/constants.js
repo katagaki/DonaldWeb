@@ -4,3 +4,4 @@ const MKEYS = ["breakfast", "lunch", "dinner"];
 const TARGETS_DEFAULT = { cal: 1800, f: 40, p: 60, c: 250, fi: 18 };
 const STORAGE_KEY = "dietplanner_plan";
 const TARGETS_KEY = "dietplanner_targets";
+const LIMITMODE_KEY = "dietplanner_limitmode";

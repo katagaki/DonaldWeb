@@ -6,6 +6,7 @@ let mealSize = { breakfast: "普通", lunch: "普通", dinner: "普通" };
 let dataSort = { col: "srcLabel", asc: true };
 let dataSearch = "";
 let targets = { ...TARGETS_DEFAULT };
+let limitMode = "close";
 
 function savePlan() {
   try {
@@ -16,6 +17,12 @@ function savePlan() {
 function saveTargets() {
   try {
     localStorage.setItem(TARGETS_KEY, JSON.stringify(targets));
+  } catch (e) {}
+}
+
+function saveLimitMode() {
+  try {
+    localStorage.setItem(LIMITMODE_KEY, limitMode);
   } catch (e) {}
 }
 
@@ -34,6 +41,12 @@ function loadPlan() {
     if (saved) {
       const parsed = JSON.parse(saved);
       targets = { ...TARGETS_DEFAULT, ...parsed };
+    }
+  } catch (e) {}
+  try {
+    const saved = localStorage.getItem(LIMITMODE_KEY);
+    if (saved && ["under", "close", "over"].includes(saved)) {
+      limitMode = saved;
     }
   } catch (e) {}
 }

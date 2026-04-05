@@ -71,11 +71,27 @@ window.openGen = function () {
     sizeHTML += `</div></div>`;
   });
   sizeHTML += `</div>`;
-  o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}<div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成</button></div></div>`;
+  const limitOpts = [
+    { val: "under", label: "控えめ" },
+    { val: "close", label: "ぴったり" },
+    { val: "over", label: "超えてOK" },
+  ];
+  let limitHTML = `<div class="size-section"><div class="freq-label" style="margin-bottom:10px">目標との関係</div><div class="size-row"><div class="size-btns">`;
+  limitOpts.forEach((opt) => {
+    limitHTML += `<button class="size-btn${limitMode === opt.val ? " active" : ""}" onclick="setLimitMode('${opt.val}')">${opt.label}</button>`;
+  });
+  limitHTML += `</div></div></div>`;
+  o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}${limitHTML}<div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成</button></div></div>`;
 };
 
 window.setMealSize = function (slot, size) {
   mealSize[slot] = size;
+  openGen();
+};
+
+window.setLimitMode = function (mode) {
+  limitMode = mode;
+  saveLimitMode();
   openGen();
 };
 
