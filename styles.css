@@ -1712,7 +1712,7 @@ body {
     padding: calc(max(env(safe-area-inset-top), 8px) + 48px) 0 0;
   }
   .main.main-data .data-toolbar {
-    padding: 10px 12px;
+    padding: 10px 16px;
   }
   .main.main-data .data-toolbar-search {
     max-width: none;
@@ -1720,8 +1720,30 @@ body {
     border-radius: 8px;
     font-size: 15px;
   }
+  .main.main-data .data-toolbar-count {
+    font-size: 14px;
+  }
   .main.main-data .data-disclaimer {
     padding: 4px 16px 0;
+  }
+  .data-sort-bar {
+    padding: 8px 16px;
+    gap: 6px;
+  }
+  .data-sort-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .data-card {
+    padding: 12px 16px;
+  }
+  .data-card-macros {
+    gap: 4px;
+  }
+  .data-card-macro {
+    padding: 6px 0 5px;
+    border-radius: 8px;
   }
   /* Show mobile header */
   .mobile-header {
