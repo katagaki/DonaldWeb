@@ -208,7 +208,6 @@ function renderDataView() {
 
 function renderSummaryView() {
   let html = "";
-  html += `<div class="section-title">サマリー</div>`;
   let cal = 0,
     p = 0,
     f = 0,
