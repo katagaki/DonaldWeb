@@ -40,6 +40,14 @@ window.searchData = function (q) {
     });
     tbody.innerHTML = rows;
   }
+  const cardList = document.querySelector(".data-card-list");
+  if (cardList) {
+    let cards = "";
+    sorted.forEach((item) => {
+      cards += renderDataCard(item);
+    });
+    cardList.innerHTML = cards;
+  }
 };
 
 window.sortData = function (col) {

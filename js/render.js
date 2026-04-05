@@ -165,6 +165,10 @@ function renderPlanView(dt) {
   return html;
 }
 
+function renderDataCard(item) {
+  return `<div class="data-card"><div class="data-card-header"><span class="data-card-name">${item.name}</span><span class="data-card-source">${item.srcLabel}</span></div><div class="data-card-macros"><span class="data-card-macro"><span class="data-card-macro-val">${item.cal}</span><span class="data-card-macro-lbl">kcal</span></span><span class="data-card-macro"><span class="data-card-macro-val">${item.p}</span><span class="data-card-macro-lbl">P</span></span><span class="data-card-macro ${fatClass(item.f)}"><span class="data-card-macro-val">${item.f}</span><span class="data-card-macro-lbl">F</span></span><span class="data-card-macro"><span class="data-card-macro-val">${item.c}</span><span class="data-card-macro-lbl">C</span></span><span class="data-card-macro"><span class="data-card-macro-val">${item.fi}</span><span class="data-card-macro-lbl">繊維</span></span></div><div class="data-card-cat">${item.cat}</div></div>`;
+}
+
 function renderDataView() {
   let html = "";
   const cols = [
@@ -193,7 +197,26 @@ function renderDataView() {
   });
   html += `<div class="data-toolbar"><input class="data-toolbar-search" type="text" placeholder="検索..." value="${dataSearch}" oninput="searchData(this.value)"><span class="data-toolbar-count">${filtered.length}件</span></div>`;
   html += `<div class="data-disclaimer">データはAIを使用して取得されたものであり、正確でない場合があります。ご利用の際は情報をご確認ください。</div>`;
-  html += `<div class="data-table-wrap"><table class="data-table"><thead><tr>`;
+  /* Mobile sort bar */
+  const sortLabels = {
+    srcLabel: "ソース",
+    name: "名前",
+    cal: "カロリー",
+    p: "P",
+    f: "F",
+    c: "C",
+    fi: "繊維",
+    cat: "分類",
+  };
+  html += `<div class="data-sort-bar mobile-only">`;
+  Object.entries(sortLabels).forEach(([k, l]) => {
+    const active = dataSort.col === k;
+    const arrow = active ? (dataSort.asc ? " ↑" : " ↓") : "";
+    html += `<button class="data-sort-btn${active ? " data-sort-active" : ""}" onclick="sortData('${k}')">${l}${arrow}</button>`;
+  });
+  html += `</div>`;
+  /* Desktop table */
+  html += `<div class="data-table-wrap desktop-only"><table class="data-table"><thead><tr>`;
   cols.forEach((c) => {
     const active = dataSort.col === c.k;
     const arrow = active ? (dataSort.asc ? " ↑" : " ↓") : "";
@@ -204,6 +227,12 @@ function renderDataView() {
     html += `<tr><td>${item.srcLabel}</td><td class="td-name">${item.name}</td><td>${item.cal}</td><td>${item.p}</td><td class="${fatClass(item.f)}">${item.f}</td><td>${item.c}</td><td>${item.fi}</td><td>${item.cat}</td></tr>`;
   });
   html += `</tbody></table></div>`;
+  /* Mobile card list */
+  html += `<div class="data-card-list mobile-only">`;
+  sorted.forEach((item) => {
+    html += renderDataCard(item);
+  });
+  html += `</div>`;
   return html;
 }
 
