@@ -1702,6 +1702,14 @@ body {
   .btn-add:active {
     opacity: 1;
   }
+
+  /* Hide scrollbars on mobile */
+  * {
+    scrollbar-width: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Mobile dark mode */
