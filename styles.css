@@ -676,6 +676,24 @@ body {
   font-weight: 600;
   border-color: rgba(0, 122, 255, 0.3);
 }
+.settings-columns {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .settings-columns {
+    flex-direction: row;
+    gap: 24px;
+  }
+  .settings-columns > .targets-section,
+  .settings-columns > .size-section {
+    flex: 1;
+    min-width: 0;
+  }
+  .overlay .sheet:has(.settings-columns) {
+    width: 680px;
+  }
+}
 .sheet-btns {
   display: flex;
   gap: 10px;
