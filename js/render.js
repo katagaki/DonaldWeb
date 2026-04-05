@@ -268,7 +268,7 @@ function renderPicker() {
 
   // Only rebuild full picker if it doesn't exist yet
   if (!o.querySelector(".picker")) {
-    let h = `<div class="picker-bg" onclick="closePicker()"></div><div class="picker"><div class="picker-header"><div class="picker-top"><button class="btn-back" onclick="closePicker()">&larr; 戻る</button><input class="picker-search" type="text" placeholder="メニューを検索..." value="${window._pickerQ}" oninput="window._pickerQ=this.value;renderPicker()"></div><div class="picker-filters">`;
+    let h = `<div class="overlay-bg" onclick="closePicker()"></div><div class="sheet picker"><div class="picker-header"><div class="picker-top"><button class="btn-back" onclick="closePicker()">&larr; 戻る</button><input class="picker-search" type="text" placeholder="メニューを検索..." value="${window._pickerQ}" oninput="window._pickerQ=this.value;renderPicker()"></div><div class="picker-filters">`;
     fBtns.forEach((f) => {
       h += `<button class="filter-btn${window._pickerFilter === f.k ? " active" : ""}" onclick="window._pickerFilter='${f.k}';renderPicker()">${f.l}</button>`;
     });
