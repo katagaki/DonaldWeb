@@ -264,6 +264,7 @@ function renderPicker() {
     { k: "seveneleven", l: "セブン" },
     { k: "nosh", l: "nosh" },
     { k: "mcdonalds", l: "マック" },
+    { k: "boss", l: "BOSS" },
   ];
 
   // Only rebuild full picker if it doesn't exist yet
