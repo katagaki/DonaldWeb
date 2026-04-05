@@ -4,6 +4,7 @@ let view = "plan";
 let macFreq = 15;
 let mealSize = { breakfast: "普通", lunch: "普通", dinner: "普通" };
 let dataSort = { col: "name", asc: true };
+let dataSearch = "";
 let targets = { ...TARGETS_DEFAULT };
 
 function savePlan() {

@@ -14,6 +14,34 @@ window.rmItem = function (d, m, idx) {
   render();
 };
 
+window.searchData = function (q) {
+  dataSearch = q;
+  const filtered = dataSearch
+    ? allFlat.filter(
+        (i) =>
+          i.name.toLowerCase().includes(dataSearch.toLowerCase()) ||
+          i.srcLabel.toLowerCase().includes(dataSearch.toLowerCase()) ||
+          i.cat.toLowerCase().includes(dataSearch.toLowerCase())
+      )
+    : allFlat;
+  const sorted = [...filtered].sort((a, b) => {
+    const va = a[dataSort.col],
+      vb = b[dataSort.col];
+    const cmp = typeof va === "string" ? va.localeCompare(vb, "ja") : va - vb;
+    return dataSort.asc ? cmp : -cmp;
+  });
+  const countEl = document.querySelector(".data-toolbar-count");
+  if (countEl) countEl.textContent = filtered.length + "件";
+  const tbody = document.querySelector(".data-table tbody");
+  if (tbody) {
+    let rows = "";
+    sorted.forEach((item) => {
+      rows += `<tr><td>${item.srcLabel}</td><td class="td-name">${item.name}</td><td>${item.cal}</td><td>${item.p}</td><td class="${fatClass(item.f)}">${item.f}</td><td>${item.c}</td><td>${item.fi}</td><td>${item.cat}</td></tr>`;
+    });
+    tbody.innerHTML = rows;
+  }
+};
+
 window.sortData = function (col) {
   if (dataSort.col === col) dataSort.asc = !dataSort.asc;
   else {

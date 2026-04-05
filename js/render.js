@@ -87,7 +87,7 @@ function render() {
   </div>`;
 
   // === Main content ===
-  html += `<div class="main" id="scroll">`;
+  html += `<div class="main${view === "data" ? " main-data" : ""}" id="scroll">`;
 
   if (view === "plan") {
     html += renderPlanView(dt);
@@ -155,7 +155,6 @@ function renderPlanView(dt) {
 
 function renderDataView() {
   let html = "";
-  html += `<div class="section-title">データ <span style="font-size:13px;color:var(--text3);font-weight:400">${allFlat.length}件</span></div>`;
   const cols = [
     { k: "srcLabel", l: "ソース" },
     { k: "name", l: "名前" },
@@ -166,13 +165,22 @@ function renderDataView() {
     { k: "fi", l: "食物繊維" },
     { k: "cat", l: "分類" },
   ];
-  const sorted = [...allFlat].sort((a, b) => {
+  const filtered = dataSearch
+    ? allFlat.filter(
+        (i) =>
+          i.name.toLowerCase().includes(dataSearch.toLowerCase()) ||
+          i.srcLabel.toLowerCase().includes(dataSearch.toLowerCase()) ||
+          i.cat.toLowerCase().includes(dataSearch.toLowerCase())
+      )
+    : allFlat;
+  const sorted = [...filtered].sort((a, b) => {
     const va = a[dataSort.col],
       vb = b[dataSort.col];
     const cmp = typeof va === "string" ? va.localeCompare(vb, "ja") : va - vb;
     return dataSort.asc ? cmp : -cmp;
   });
-  html += `<div class="card data-table-wrap"><table class="data-table"><thead><tr>`;
+  html += `<div class="data-toolbar"><span class="data-toolbar-count">${filtered.length}件</span><input class="data-toolbar-search" type="text" placeholder="検索..." value="${dataSearch}" oninput="searchData(this.value)"></div>`;
+  html += `<div class="data-table-wrap"><table class="data-table"><thead><tr>`;
   cols.forEach((c) => {
     const active = dataSort.col === c.k;
     const arrow = active ? (dataSort.asc ? " ↑" : " ↓") : "";
@@ -264,7 +272,7 @@ function renderPicker() {
   });
   h += `</div></div><div class="picker-list"><div class="picker-count">脂質順 -- ${items.length}件</div><div class="picker-items">`;
   items.forEach((item) => {
-    h += `<button class="picker-item" onclick='addPickerItem(${JSON.stringify({ id: item.id, name: item.name, cal: item.cal, p: item.p, f: item.f, c: item.c, fi: item.fi })})'><div class="src-dot" style="background:${item.srcColor}"></div><div class="item-info"><div class="pi-name">${item.name}</div><div class="pi-macros">${item.cal}kcal タンパク質${item.p}g 脂質${item.f}g 炭水化物${item.c}g 食物繊維${item.fi}g</div></div><div class="pi-fat ${fatClass(item.f)}">脂質${item.f}g</div></button>`;
+    h += `<button class="picker-item" onclick='addPickerItem(${JSON.stringify({ id: item.id, name: item.name, cal: item.cal, p: item.p, f: item.f, c: item.c, fi: item.fi })})'><div class="item-info"><div class="pi-name">${item.name}</div><div class="pi-macros">${item.cal}kcal タンパク質${item.p}g 脂質${item.f}g 炭水化物${item.c}g 食物繊維${item.fi}g</div></div><div class="pi-fat ${fatClass(item.f)}">脂質${item.f}g</div></button>`;
   });
   h += `</div></div></div>`;
   o.innerHTML = h;
