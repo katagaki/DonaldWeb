@@ -89,7 +89,7 @@ function render() {
   </div>`;
 
   // === Main content ===
-  html += `<div class="main${view === "data" ? " main-data" : ""}" id="scroll">`;
+  html += `<div class="main${view === "plan" ? " main-plan" : ""}${view === "data" ? " main-data" : ""}" id="scroll">`;
 
   if (view === "plan") {
     html += renderPlanView(dt);
