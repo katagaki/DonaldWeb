@@ -83,11 +83,9 @@ function render() {
 
   // === Mobile Header ===
   html += `<div class="mobile-header mobile-only">
-    <div class="toolbar-date"><b>${todayStr}</b></div>
-    <div class="mobile-header-btns">
-      <button class="btn-settings-mobile" onclick="openSettings()" title="目標値"><i class="fa-solid fa-gear"></i></button>
-      <button class="btn-gen-primary" onclick="openGen()">自動生成</button>
-    </div>
+    <button class="btn-settings-mobile" onclick="openSettings()" title="目標値"><i class="fa-solid fa-gear"></i></button>
+    <div class="toolbar-date mobile-header-title"><b>${todayStr}</b></div>
+    <button class="btn-gen-primary" onclick="openGen()">自動生成</button>
   </div>`;
 
   // === Main content ===
@@ -134,7 +132,11 @@ function renderPlanView(dt) {
   // Section title
   html += `<div class="section-title desktop-only">${DAYS[activeDay]}曜日</div>`;
 
-  // Macro card
+  // Two-column layout wrapper
+  html += `<div class="plan-columns">`;
+
+  // Left column: Macro card
+  html += `<div class="plan-col-left">`;
   html += `<div class="card macro-card"><div class="macro-label">栄養バランス</div>`;
   html += macroBarHTML("カロリー", dt.cal, targets.cal, "kcal", "var(--blue)");
   html += macroBarHTML("タンパク質", dt.p, targets.p, "g", "var(--green)");
@@ -142,8 +144,10 @@ function renderPlanView(dt) {
   html += macroBarHTML("炭水化物", dt.c, targets.c, "g", "var(--indigo)");
   html += macroBarHTML("食物繊維", dt.fi, targets.fi, "g", "var(--teal)");
   html += `</div>`;
+  html += `</div>`;
 
-  // Meal slots
+  // Right column: Meal slots
+  html += `<div class="plan-col-right">`;
   MEALS.forEach((meal, mi) => {
     html += `<div class="card meal-slot"><div class="meal-header"><span class="meal-title">${meal}</span><button class="btn-add" onclick="openPicker(${activeDay},${mi})">+ 追加</button></div>`;
     if (!plan[activeDay][mi].length)
@@ -153,6 +157,9 @@ function renderPlanView(dt) {
     });
     html += `</div>`;
   });
+  html += `</div>`;
+
+  html += `</div>`;
 
   return html;
 }
@@ -219,6 +226,11 @@ function renderSummaryView() {
     }
   });
   n = n || 1;
+  // Two-column layout wrapper
+  html += `<div class="plan-columns">`;
+
+  // Left column: Weekly average
+  html += `<div class="plan-col-left">`;
   html += `<div class="card summary-card"><div class="macro-label">週間平均 (${n}日)</div>`;
   html += macroBarHTML("カロリー", cal / n, targets.cal, "kcal", "var(--blue)");
   html += macroBarHTML("タンパク質", p / n, targets.p, "g", "var(--green)");
@@ -226,6 +238,10 @@ function renderSummaryView() {
   html += macroBarHTML("炭水化物", c / n, targets.c, "g", "var(--indigo)");
   html += macroBarHTML("食物繊維", fi / n, targets.fi, "g", "var(--teal)");
   html += `</div>`;
+  html += `</div>`;
+
+  // Right column: Breakdown + Sources
+  html += `<div class="plan-col-right">`;
 
   // Breakdown
   html += `<div class="macro-label" style="padding:0 2px;margin-bottom:8px">日別</div><div class="card breakdown-list">`;
@@ -250,6 +266,9 @@ function renderSummaryView() {
     );
     html += `<div class="source-row"><div class="src-dot" style="background:${src.color}"></div><span class="source-label">${src.label}</span><span class="source-count">${cnt}</span><span class="source-unit">品</span></div>`;
   });
+  html += `</div>`;
+
+  html += `</div>`;
   html += `</div>`;
 
   return html;

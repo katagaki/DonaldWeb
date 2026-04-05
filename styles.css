@@ -281,6 +281,25 @@ body {
   margin-bottom: 12px;
 }
 
+/* Two-column layout for plan and summary views */
+@media (min-width: 768px) {
+  .plan-columns {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .plan-col-left {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 16px;
+  }
+  .plan-col-right {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 /* Macro card */
 .macro-card {
   padding: 16px 18px;
