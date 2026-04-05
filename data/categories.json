@@ -1,0 +1,10 @@
+{
+  "meal": "弁当",
+  "protein": "タンパク質",
+  "veggie": "野菜",
+  "soup": "スープ",
+  "side": "サイド",
+  "dessert": "デザート",
+  "bread": "パン",
+  "drink": "飲み物"
+}

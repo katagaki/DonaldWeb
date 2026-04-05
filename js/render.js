@@ -278,17 +278,13 @@ function renderPicker() {
   const o = document.getElementById("pickerOverlay");
   const slot = MKEYS[window._pickerM];
   const items = allFlat
-    .filter((i) => window._pickerFilter === "all" || i.src === window._pickerFilter)
+    .filter((i) => window._pickerFilter === "all" || i.cat === window._pickerFilter)
     .filter((i) => !window._pickerQ || i.name.toLowerCase().includes(window._pickerQ.toLowerCase()))
     .filter((i) => i.meal === "any" || i.meal.includes(slot))
     .sort((a, b) => a.f - b.f);
-  const fBtns = [
-    { k: "all", l: "すべて" },
-    { k: "seveneleven", l: "セブン" },
-    { k: "nosh", l: "nosh" },
-    { k: "mcdonalds", l: "マック" },
-    { k: "boss", l: "BOSS" },
-  ];
+  const fBtns = [{ k: "all", l: "すべて" }].concat(
+    Object.entries(CAT_LABELS).map(([k, l]) => ({ k, l }))
+  );
 
   // Only rebuild full picker if it doesn't exist yet
   if (!o.querySelector(".picker")) {
