@@ -11,6 +11,77 @@ function shuffle(a) {
   return b;
 }
 
+/* Score how well adding an item moves day totals toward targets.
+   Lower score = better fit. Each nutrient is weighted by how important
+   overshooting vs undershooting is (fat overshoot is penalized heavily). */
+function scoreItem(item, daySoFar, mealsLeft) {
+  const t = targets;
+  const after = {
+    cal: daySoFar.cal + item.cal,
+    p: daySoFar.p + item.p,
+    f: daySoFar.f + item.f,
+    c: daySoFar.c + item.c,
+    fi: daySoFar.fi + item.fi,
+  };
+  /* Budget per meal for remaining nutrients (including this meal) */
+  let score = 0;
+  /* Calories: penalize proportional distance from target */
+  const calDiff = after.cal - t.cal;
+  if (calDiff > 0) score += (calDiff / t.cal) * 3;
+  else score += (Math.abs(calDiff) / t.cal) * 0.5;
+  /* Fat: heavily penalize exceeding target */
+  const fDiff = after.f - t.f;
+  if (fDiff > 0) score += (fDiff / t.f) * 8;
+  else score += (Math.abs(fDiff) / t.f) * 0.3;
+  /* Protein: reward getting closer, mild penalty for overshoot */
+  const pDiff = after.p - t.p;
+  if (pDiff > 0) score += (pDiff / t.p) * 1;
+  else score += (Math.abs(pDiff) / t.p) * 1.5;
+  /* Carbs: balanced penalty */
+  const cDiff = after.c - t.c;
+  if (cDiff > 0) score += (cDiff / t.c) * 2;
+  else score += (Math.abs(cDiff) / t.c) * 0.8;
+  /* Fiber: reward getting closer, low penalty for overshoot */
+  const fiDiff = after.fi - t.fi;
+  if (fiDiff > 0) score += (fiDiff / t.fi) * 0.3;
+  else score += (Math.abs(fiDiff) / t.fi) * 2;
+  return score;
+}
+
+/* Pick the best item from candidates, with some randomness to add variety.
+   Selects from the top candidates weighted by rank. */
+function pickBest(candidates, daySoFar, mealsLeft) {
+  if (!candidates.length) return null;
+  if (candidates.length === 1) return candidates[0];
+  const scored = candidates
+    .map((item) => ({ item, score: scoreItem(item, daySoFar, mealsLeft) }))
+    .sort((a, b) => a.score - b.score);
+  /* Pick from top candidates with weighted probability (better = more likely) */
+  const topN = Math.min(scored.length, Math.max(3, Math.ceil(scored.length * 0.3)));
+  const top = scored.slice(0, topN);
+  const maxS = top[top.length - 1].score;
+  const minS = top[0].score;
+  const range = maxS - minS || 1;
+  const weights = top.map((s) => 1 + (maxS - s.score) / range);
+  const totalW = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * totalW;
+  for (let i = 0; i < weights.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return top[i].item;
+  }
+  return top[0].item;
+}
+
+function addNutrients(totals, item) {
+  return {
+    cal: totals.cal + item.cal,
+    p: totals.p + item.p,
+    f: totals.f + item.f,
+    c: totals.c + item.c,
+    fi: totals.fi + item.fi,
+  };
+}
+
 function generateWeek(macPct) {
   const plan = DAYS.map(() => MEALS.map(() => []));
   const macDays =
@@ -19,34 +90,41 @@ function generateWeek(macPct) {
       : [];
   for (let d = 0; d < 7; d++) {
     const used = new Set();
-    let dayFat = 0;
+    let dayTotals = { cal: 0, p: 0, f: 0, c: 0, fi: 0 };
     const isMac = macDays.includes(d);
+    /* Count active meals for budget estimation */
+    const activeMeals = MKEYS.filter((k) => mealSize[k] !== "なし").length;
     for (let m = 0; m < 3; m++) {
-      const slot = MKEYS[m],
-        fatLeft = targets.f - dayFat;
+      const slot = MKEYS[m];
       let items = [];
       const sz = mealSize[slot];
       if (sz === "なし") {
         plan[d][m] = [];
         continue;
       }
+      const mealsLeft = MKEYS.slice(m).filter((k) => mealSize[k] !== "なし").length;
       if (isMac && m === 1) {
+        /* McDonald's lunch: use scoring to pick the best-fitting burger + sides */
         const pool = DB.mcdonalds.items.filter(
-          (i) => (i.meal === "any" || i.meal.includes("lunch")) && i.f <= 15
+          (i) => (i.meal === "any" || i.meal.includes("lunch")) && !used.has(i.id)
         );
-        const b = pool.filter((i) => i.cat === "meal"),
-          s = pool.filter((i) => ["veggie", "dessert"].includes(i.cat));
-        const burger = b.length ? pick(b) : null;
-        if (sz === "控えめ") {
-          items = [burger].filter(Boolean);
-        } else {
-          const side = s.length
-            ? pick(s.filter((i) => (burger ? i.id !== burger.id : true)))
-            : null;
-          items = [burger, side].filter(Boolean);
-          if (sz === "多め") {
-            const extra = s.filter((i) => !items.some((x) => x && x.id === i.id));
-            if (extra.length) items.push(pick(extra));
+        const burgers = pool.filter((i) => i.cat === "meal");
+        const sides = pool.filter((i) => ["veggie", "dessert"].includes(i.cat));
+        const burger = pickBest(burgers, dayTotals, mealsLeft);
+        if (burger) {
+          if (sz === "控えめ") {
+            items = [burger];
+          } else {
+            let mealTotals = addNutrients(dayTotals, burger);
+            const sidePool = sides.filter((i) => i.id !== burger.id);
+            const side = pickBest(sidePool, mealTotals, mealsLeft);
+            items = [burger, side].filter(Boolean);
+            if (sz === "多め" && side) {
+              mealTotals = addNutrients(mealTotals, side);
+              const extra = sides.filter((i) => !items.some((x) => x && x.id === i.id));
+              const ex = pickBest(extra, mealTotals, mealsLeft);
+              if (ex) items.push(ex);
+            }
           }
         }
       } else {
@@ -55,46 +133,42 @@ function generateWeek(macPct) {
             i.src !== "mcdonalds" && (i.meal === "any" || i.meal.includes(slot)) && !used.has(i.id)
         );
         if (slot === "breakfast") {
-          const mains = pool.filter((i) => ["meal", "protein"].includes(i.cat) && i.f <= 12);
-          const sides = pool.filter((i) => ["carb", "veggie", "soup"].includes(i.cat) && i.f <= 5);
-          const main = mains.length ? pick(mains) : null;
+          const mains = pool.filter((i) => ["meal", "protein"].includes(i.cat));
+          const sides = pool.filter((i) => ["carb", "veggie", "soup"].includes(i.cat));
+          const main = pickBest(mains, dayTotals, mealsLeft);
           if (sz === "控えめ") {
             items = [main].filter(Boolean);
           } else {
-            const sd = sides.length
-              ? pick(sides.filter((i) => (main ? i.id !== main.id : true)))
-              : null;
+            let mealTotals = main ? addNutrients(dayTotals, main) : dayTotals;
+            const sidePool = sides.filter((i) => (main ? i.id !== main.id : true));
+            const sd = pickBest(sidePool, mealTotals, mealsLeft);
             items = [main, sd].filter(Boolean);
-            if (sz === "多め") {
+            if (sz === "多め" && sd) {
+              mealTotals = addNutrients(mealTotals, sd);
               const extra = sides.filter((i) => !items.some((x) => x && x.id === i.id));
-              if (extra.length) items.push(pick(extra));
+              const ex = pickBest(extra, mealTotals, mealsLeft);
+              if (ex) items.push(ex);
             }
           }
         } else {
-          const fMax = fatLeft > 25 ? 18 : 12;
-          const mp = pool.filter((i) => i.cat === "meal" && i.f <= fMax);
-          const main = mp.length
-            ? pick(mp)
-            : pool.filter((i) => i.cat === "meal").length
-              ? pick(pool.filter((i) => i.cat === "meal"))
-              : null;
+          /* Lunch / Dinner */
+          const mealPool = pool.filter((i) => i.cat === "meal");
+          const main = pickBest(mealPool, dayTotals, mealsLeft);
           if (main) {
             if (sz === "控えめ") {
               items = [main];
             } else {
-              const rf = fatLeft - main.f;
+              let mealTotals = addNutrients(dayTotals, main);
               const extras = pool.filter(
-                (i) =>
-                  i.id !== main.id &&
-                  ["veggie", "soup", "carb", "protein"].includes(i.cat) &&
-                  i.f <= Math.min(rf * 0.4, 5)
+                (i) => i.id !== main.id && ["veggie", "soup", "carb", "protein"].includes(i.cat)
               );
-              const hiF = extras.filter((i) => i.fi >= 2);
-              const ex = hiF.length ? pick(hiF) : extras.length ? pick(extras) : null;
+              const ex = pickBest(extras, mealTotals, mealsLeft);
               items = [main, ex].filter(Boolean);
-              if (sz === "多め") {
+              if (sz === "多め" && ex) {
+                mealTotals = addNutrients(mealTotals, ex);
                 const extra2 = extras.filter((i) => !items.some((x) => x && x.id === i.id));
-                if (extra2.length) items.push(pick(extra2));
+                const ex2 = pickBest(extra2, mealTotals, mealsLeft);
+                if (ex2) items.push(ex2);
               }
             }
           }
@@ -110,7 +184,7 @@ function generateWeek(macPct) {
         c: i.c,
         fi: i.fi,
       }));
-      dayFat += items.reduce((s, i) => s + i.f, 0);
+      dayTotals = items.reduce((t, i) => addNutrients(t, i), dayTotals);
     }
   }
   return plan;
