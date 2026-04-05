@@ -33,13 +33,23 @@ function macroBarHTML(label, val, max, unit, color) {
   return `<div class="macro-row"><span>${label}</span><div class="macro-bar"><div class="macro-fill" style="width:${pct}%;background:${over ? "var(--red)" : color}"></div></div><span class="macro-val${over ? " over" : ""}">${val.toFixed(0)}/${max}${unit}</span></div>`;
 }
 
+function formatToolbarDate() {
+  const now = new Date();
+  const days = ["日", "月", "火", "水", "木", "金", "土"];
+  const m = now.getMonth() + 1;
+  const d = now.getDate();
+  const dow = days[now.getDay()];
+  return `${m}月${d}日（${dow}）`;
+}
+
 function render() {
   const dt = totals(activeDay);
   let html = "";
+  const todayStr = formatToolbarDate();
 
   // === Desktop Toolbar ===
   html += `<div class="toolbar desktop-only">
-    <div class="toolbar-spacer"></div>
+    <div class="toolbar-date"><b>${todayStr}</b></div>
     <button class="btn-gen" onclick="openGen()">自動生成...</button>
   </div>`;
 
@@ -72,7 +82,7 @@ function render() {
 
   // === Mobile Header ===
   html += `<div class="mobile-header mobile-only">
-    <div></div>
+    <div class="toolbar-date"><b>${todayStr}</b></div>
     <button class="btn-gen-primary" onclick="openGen()">自動生成</button>
   </div>`;
 

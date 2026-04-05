@@ -77,6 +77,12 @@ body {
 .toolbar-spacer {
   flex: 1;
 }
+.toolbar-date {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text);
+  -webkit-app-region: no-drag;
+}
 .btn-gen {
   -webkit-app-region: no-drag;
   padding: 5px 14px;
