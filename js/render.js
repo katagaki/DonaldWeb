@@ -133,8 +133,8 @@ function renderPlanView(dt) {
   // Macro card
   html += `<div class="card macro-card"><div class="macro-label">栄養バランス</div>`;
   html += macroBarHTML("カロリー", dt.cal, targets.cal, "kcal", "var(--blue)");
-  html += macroBarHTML("脂質", dt.f, targets.f, "g", "var(--orange)");
   html += macroBarHTML("タンパク質", dt.p, targets.p, "g", "var(--green)");
+  html += macroBarHTML("脂質", dt.f, targets.f, "g", "var(--orange)");
   html += macroBarHTML("炭水化物", dt.c, targets.c, "g", "var(--indigo)");
   html += macroBarHTML("食物繊維", dt.fi, targets.fi, "g", "var(--teal)");
   html += `</div>`;
@@ -209,8 +209,8 @@ function renderSummaryView() {
   n = n || 1;
   html += `<div class="card summary-card"><div class="macro-label">週間平均 (${n}日)</div>`;
   html += macroBarHTML("カロリー", cal / n, targets.cal, "kcal", "var(--blue)");
-  html += macroBarHTML("脂質", f / n, targets.f, "g", "var(--orange)");
   html += macroBarHTML("タンパク質", p / n, targets.p, "g", "var(--green)");
+  html += macroBarHTML("脂質", f / n, targets.f, "g", "var(--orange)");
   html += macroBarHTML("炭水化物", c / n, targets.c, "g", "var(--indigo)");
   html += macroBarHTML("食物繊維", fi / n, targets.fi, "g", "var(--teal)");
   html += `</div>`;

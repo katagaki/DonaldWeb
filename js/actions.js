@@ -45,8 +45,8 @@ window.openGen = function () {
   sizeHTML += `</div>`;
   const tRows = [
     { k: "cal", l: "カロリー", unit: "kcal", step: 50 },
-    { k: "f", l: "脂質", unit: "g", step: 5 },
     { k: "p", l: "タンパク質", unit: "g", step: 5 },
+    { k: "f", l: "脂質", unit: "g", step: 5 },
     { k: "c", l: "炭水化物", unit: "g", step: 10 },
     { k: "fi", l: "食物繊維", unit: "g", step: 1 },
   ];
