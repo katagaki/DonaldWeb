@@ -51,6 +51,7 @@ function render() {
   html += `<div class="toolbar desktop-only">
     <div class="toolbar-date"><b>${todayStr}</b></div>
     <button class="btn-gen" onclick="openGen()">自動生成...</button>
+    <button class="btn-settings" onclick="openSettings()" title="目標値"><i class="fa-solid fa-gear"></i></button>
   </div>`;
 
   // === Desktop Sidebar ===
@@ -83,7 +84,10 @@ function render() {
   // === Mobile Header ===
   html += `<div class="mobile-header mobile-only">
     <div class="toolbar-date"><b>${todayStr}</b></div>
-    <button class="btn-gen-primary" onclick="openGen()">自動生成</button>
+    <div class="mobile-header-btns">
+      <button class="btn-settings-mobile" onclick="openSettings()" title="目標値"><i class="fa-solid fa-gear"></i></button>
+      <button class="btn-gen-primary" onclick="openGen()">自動生成</button>
+    </div>
   </div>`;
 
   // === Main content ===
