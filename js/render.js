@@ -137,7 +137,8 @@ function renderPlanView(dt) {
 
   // Left column: Macro card
   html += `<div class="plan-col-left">`;
-  html += `<div class="card macro-card"><div class="macro-label">栄養バランス</div>`;
+  html += `<div class="macro-label" style="padding:0 2px;margin-bottom:8px">栄養バランス</div>`;
+  html += `<div class="card macro-card">`;
   html += macroBarHTML("カロリー", dt.cal, targets.cal, "kcal", "var(--blue)");
   html += macroBarHTML("タンパク質", dt.p, targets.p, "g", "var(--green)");
   html += macroBarHTML("脂質", dt.f, targets.f, "g", "var(--orange)");
@@ -231,7 +232,8 @@ function renderSummaryView() {
 
   // Left column: Weekly average
   html += `<div class="plan-col-left">`;
-  html += `<div class="card summary-card"><div class="macro-label">週間平均 (${n}日)</div>`;
+  html += `<div class="macro-label" style="padding:0 2px;margin-bottom:8px">週間平均 (${n}日)</div>`;
+  html += `<div class="card summary-card">`;
   html += macroBarHTML("カロリー", cal / n, targets.cal, "kcal", "var(--blue)");
   html += macroBarHTML("タンパク質", p / n, targets.p, "g", "var(--green)");
   html += macroBarHTML("脂質", f / n, targets.f, "g", "var(--orange)");
