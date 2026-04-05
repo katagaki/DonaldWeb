@@ -304,7 +304,7 @@ body {
   padding: 16px 18px;
 }
 .macro-label {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text3);
   font-weight: 600;
   margin-bottom: 10px;
@@ -360,7 +360,7 @@ body {
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
 }
 .meal-title {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text3);
   font-weight: 600;
   text-transform: uppercase;
@@ -1348,6 +1348,21 @@ body {
   }
   .picker .sheet-handle {
     margin: 8px auto 0;
+  }
+  .btn-add {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .btn-add:hover {
+    background: transparent;
+  }
+  .btn-add:active {
+    opacity: 0.5;
+    background: transparent;
   }
 }
 
