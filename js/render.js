@@ -58,11 +58,11 @@ function render() {
   html += `<div class="sidebar desktop-only">`;
   html += `<div class="sidebar-section"><div class="sidebar-label">表示</div>`;
   html += `<button class="sidebar-item${view === "plan" ? " active" : ""}" onclick="setView('plan')">
-    <div class="sidebar-icon" style="background:var(--blue)"><i class="fa-solid fa-calendar-days"></i></div>プラン</button>`;
+    <div class="sidebar-icon" style="background:linear-gradient(180deg, #4a9be8 0%, #007aff 50%, #0063d1 100%)"><i class="fa-solid fa-calendar-days"></i></div>プラン</button>`;
   html += `<button class="sidebar-item${view === "data" ? " active" : ""}" onclick="setView('data')">
-    <div class="sidebar-icon" style="background:var(--teal)"><i class="fa-solid fa-database"></i></div>データ</button>`;
+    <div class="sidebar-icon" style="background:linear-gradient(180deg, #5cc8db 0%, #30b0c7 50%, #1a8fa6 100%)"><i class="fa-solid fa-database"></i></div>データ</button>`;
   html += `<button class="sidebar-item${view === "summary" ? " active" : ""}" onclick="setView('summary')">
-    <div class="sidebar-icon" style="background:var(--orange)"><i class="fa-solid fa-chart-pie"></i></div>サマリー</button>`;
+    <div class="sidebar-icon" style="background:linear-gradient(180deg, #ffb340 0%, #ff9500 50%, #d67e00 100%)"><i class="fa-solid fa-chart-pie"></i></div>サマリー</button>`;
   html += `</div>`;
 
   if (view === "plan") {
