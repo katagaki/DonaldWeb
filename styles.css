@@ -1411,14 +1411,13 @@ body {
   .tab-btn.active {
     color: #fff;
     font-weight: 600;
-    text-shadow: 0 0 8px rgba(0, 122, 255, 0.6);
+    text-shadow: none;
   }
   .tab-btn.active i {
     background: linear-gradient(180deg, #7cc0ff 0%, #007aff 60%, #0055cc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 6px rgba(0, 122, 255, 0.5))
-      drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
     -webkit-text-stroke: 0;
   }
   .section-title {
@@ -1500,13 +1499,13 @@ body {
   }
   .tab-btn.active {
     color: #fff;
-    text-shadow: 0 0 8px rgba(0, 122, 255, 0.8);
+    text-shadow: none;
   }
   .tab-btn.active i {
     background: linear-gradient(180deg, #8ecfff 0%, #2890ff 60%, #0060dd 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 8px rgba(0, 122, 255, 0.7)) drop-shadow(0 1px 0 rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.3));
   }
 }
 
