@@ -65,17 +65,26 @@
             const slot = MKEYS[m],
               fatLeft = FAT_T - dayFat;
             let items = [];
+            const sz = mealSize[slot];
             if (isMac && m === 1) {
               const pool = DB.mcdonalds.items.filter(
                 (i) => (i.meal === "any" || i.meal.includes("lunch")) && i.f <= 15
               );
               const b = pool.filter((i) => i.cat === "meal"),
                 s = pool.filter((i) => ["veggie", "dessert"].includes(i.cat));
-              const burger = b.length ? pick(b) : null,
-                side = s.length
+              const burger = b.length ? pick(b) : null;
+              if (sz === "控えめ") {
+                items = [burger].filter(Boolean);
+              } else {
+                const side = s.length
                   ? pick(s.filter((i) => (burger ? i.id !== burger.id : true)))
                   : null;
-              items = [burger, side].filter(Boolean);
+                items = [burger, side].filter(Boolean);
+                if (sz === "多め") {
+                  const extra = s.filter((i) => !items.some((x) => x && x.id === i.id));
+                  if (extra.length) items.push(pick(extra));
+                }
+              }
             } else {
               const pool = allFlat.filter(
                 (i) =>
@@ -88,11 +97,19 @@
                 const sides = pool.filter(
                   (i) => ["carb", "veggie", "soup"].includes(i.cat) && i.f <= 5
                 );
-                const main = mains.length ? pick(mains) : null,
-                  sd = sides.length
+                const main = mains.length ? pick(mains) : null;
+                if (sz === "控えめ") {
+                  items = [main].filter(Boolean);
+                } else {
+                  const sd = sides.length
                     ? pick(sides.filter((i) => (main ? i.id !== main.id : true)))
                     : null;
-                items = [main, sd].filter(Boolean);
+                  items = [main, sd].filter(Boolean);
+                  if (sz === "多め") {
+                    const extra = sides.filter((i) => !items.some((x) => x && x.id === i.id));
+                    if (extra.length) items.push(pick(extra));
+                  }
+                }
               } else {
                 const fMax = fatLeft > 25 ? 18 : 12;
                 const mp = pool.filter((i) => i.cat === "meal" && i.f <= fMax);
@@ -102,16 +119,24 @@
                     ? pick(pool.filter((i) => i.cat === "meal"))
                     : null;
                 if (main) {
-                  const rf = fatLeft - main.f;
-                  const extras = pool.filter(
-                    (i) =>
-                      i.id !== main.id &&
-                      ["veggie", "soup", "carb", "protein"].includes(i.cat) &&
-                      i.f <= Math.min(rf * 0.4, 5)
-                  );
-                  const hiF = extras.filter((i) => i.fi >= 2);
-                  const ex = hiF.length ? pick(hiF) : extras.length ? pick(extras) : null;
-                  items = [main, ex].filter(Boolean);
+                  if (sz === "控えめ") {
+                    items = [main];
+                  } else {
+                    const rf = fatLeft - main.f;
+                    const extras = pool.filter(
+                      (i) =>
+                        i.id !== main.id &&
+                        ["veggie", "soup", "carb", "protein"].includes(i.cat) &&
+                        i.f <= Math.min(rf * 0.4, 5)
+                    );
+                    const hiF = extras.filter((i) => i.fi >= 2);
+                    const ex = hiF.length ? pick(hiF) : extras.length ? pick(extras) : null;
+                    items = [main, ex].filter(Boolean);
+                    if (sz === "多め") {
+                      const extra2 = extras.filter((i) => !items.some((x) => x && x.id === i.id));
+                      if (extra2.length) items.push(pick(extra2));
+                    }
+                  }
                 }
               }
             }
@@ -406,7 +431,22 @@
           document.body.appendChild(o);
         }
         o.className = "overlay open";
-        o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div><div class="sheet-targets"><span>脂質 ${FAT_T}g</span><span>食物繊維 ${FIB_T}g</span><span>${CAL_T}kcal</span></div><div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成する</button></div></div>`;
+        const sizeOpts = ["控えめ", "普通", "多め"];
+        const sizeLabels = { breakfast: "朝食", lunch: "昼食", dinner: "夕食" };
+        let sizeHTML = `<div class="size-section"><div class="freq-label" style="margin-bottom:10px">食事量</div>`;
+        MKEYS.forEach((k) => {
+          sizeHTML += `<div class="size-row"><span class="size-meal-label">${sizeLabels[k]}</span><div class="size-btns">`;
+          sizeOpts.forEach((opt) => {
+            sizeHTML += `<button class="size-btn${mealSize[k] === opt ? " active" : ""}" onclick="setMealSize('${k}','${opt}')">${opt}</button>`;
+          });
+          sizeHTML += `</div></div>`;
+        });
+        sizeHTML += `</div>`;
+        o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}<div class="sheet-targets"><span>脂質 ${FAT_T}g</span><span>食物繊維 ${FIB_T}g</span><span>${CAL_T}kcal</span></div><div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成する</button></div></div>`;
+      };
+      window.setMealSize = function (slot, size) {
+        mealSize[slot] = size;
+        openGen();
       };
       window.closeGen = function () {
         const o = document.getElementById("genOverlay");
