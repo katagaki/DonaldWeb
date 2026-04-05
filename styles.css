@@ -1569,7 +1569,7 @@ body {
     display: flex;
     gap: 3px;
     padding: 6px 8px;
-    margin: 0 -16px;
+    margin: calc(-1 * (max(env(safe-area-inset-top), 12px) + 48px)) -16px 12px;
     background: linear-gradient(180deg, #c8cdd4 0%, #b0b7c0 50%, #a0a8b2 100%);
     border-bottom: 1px solid #8a929c;
     box-shadow:
@@ -1577,9 +1577,8 @@ body {
       0 1px 2px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
     position: sticky;
-    top: 0;
+    top: calc(max(env(safe-area-inset-top), 12px) + 48px);
     z-index: 10;
-    margin-bottom: 12px;
   }
   .day-tab {
     flex: 1;
