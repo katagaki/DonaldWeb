@@ -191,7 +191,7 @@ function renderDataView() {
     const cmp = typeof va === "string" ? va.localeCompare(vb, "ja") : va - vb;
     return dataSort.asc ? cmp : -cmp;
   });
-  html += `<div class="data-toolbar"><span class="data-toolbar-count">${filtered.length}件</span><input class="data-toolbar-search" type="text" placeholder="検索..." value="${dataSearch}" oninput="searchData(this.value)"></div>`;
+  html += `<div class="data-toolbar"><input class="data-toolbar-search" type="text" placeholder="検索..." value="${dataSearch}" oninput="searchData(this.value)"><span class="data-toolbar-count">${filtered.length}件</span></div>`;
   html += `<div class="data-table-wrap"><table class="data-table"><thead><tr>`;
   cols.forEach((c) => {
     const active = dataSort.col === c.k;

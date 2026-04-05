@@ -1103,6 +1103,7 @@ body {
   color: var(--text3);
   font-weight: 500;
   white-space: nowrap;
+  margin-left: auto;
 }
 .data-toolbar-search {
   flex: 1;
