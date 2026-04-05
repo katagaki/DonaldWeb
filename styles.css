@@ -1419,6 +1419,20 @@ body {
   }
 }
 
+/* Mobile dark mode */
+@media (max-width: 767px) and (prefers-color-scheme: dark) {
+  .mobile-header {
+    background: linear-gradient(180deg, #3a3d42 0%, #28292e 50%, #1e1f23 100%);
+    border-bottom-color: #111;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .mobile-tab-bar {
+    background: linear-gradient(180deg, #3a3d42 0%, #28292e 50%, #1e1f23 100%);
+    border-top-color: #111;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
 /* Hide desktop-only elements on mobile */
 @media (max-width: 767px) {
   .desktop-only {
