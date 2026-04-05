@@ -292,11 +292,9 @@ body {
 /* Cards */
 .card {
   background: var(--glass-solid);
-  border: 0.5px solid var(--glass-border);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.06),
-    0 0.5px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: none;
   margin-bottom: 12px;
 }
 
@@ -1232,9 +1230,8 @@ body {
     background: linear-gradient(180deg, #1a1a1c 0%, #2a2a2c 100%);
   }
   .card {
-    box-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.2),
-      0 0.5px 1px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
   }
   .macro-bar {
     background: rgba(255, 255, 255, 0.06);
