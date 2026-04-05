@@ -1747,6 +1747,17 @@ body {
     border-radius: 8px;
     font-size: 13px;
   }
+  .target-input {
+    width: 80px;
+    padding: 8px 6px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .picker-search {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
   .target-step-btn {
     width: 34px;
     height: 34px;
