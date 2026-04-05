@@ -57,11 +57,11 @@ function render() {
   html += `<div class="sidebar desktop-only">`;
   html += `<div class="sidebar-section"><div class="sidebar-label">表示</div>`;
   html += `<button class="sidebar-item${view === "plan" ? " active" : ""}" onclick="setView('plan')">
-    <div class="sidebar-icon" style="background:var(--blue)">P</div>プラン</button>`;
+    <div class="sidebar-icon" style="background:var(--blue)"><i class="fa-solid fa-calendar-days"></i></div>プラン</button>`;
   html += `<button class="sidebar-item${view === "data" ? " active" : ""}" onclick="setView('data')">
-    <div class="sidebar-icon" style="background:var(--teal)">D</div>データ</button>`;
+    <div class="sidebar-icon" style="background:var(--teal)"><i class="fa-solid fa-database"></i></div>データ</button>`;
   html += `<button class="sidebar-item${view === "summary" ? " active" : ""}" onclick="setView('summary')">
-    <div class="sidebar-icon" style="background:var(--orange)">S</div>サマリー</button>`;
+    <div class="sidebar-icon" style="background:var(--orange)"><i class="fa-solid fa-chart-pie"></i></div>サマリー</button>`;
   html += `</div>`;
 
   if (view === "plan") {
@@ -105,9 +105,9 @@ function render() {
 
   // === Mobile bottom tab bar ===
   html += `<div class="mobile-tab-bar mobile-only">
-    <button class="tab-btn${view === "plan" ? " active" : ""}" onclick="setView('plan')">プラン</button>
-    <button class="tab-btn${view === "data" ? " active" : ""}" onclick="setView('data')">データ</button>
-    <button class="tab-btn${view === "summary" ? " active" : ""}" onclick="setView('summary')">サマリー</button>
+    <button class="tab-btn${view === "plan" ? " active" : ""}" onclick="setView('plan')"><i class="fa-solid fa-calendar-days"></i><span>プラン</span></button>
+    <button class="tab-btn${view === "data" ? " active" : ""}" onclick="setView('data')"><i class="fa-solid fa-database"></i><span>データ</span></button>
+    <button class="tab-btn${view === "summary" ? " active" : ""}" onclick="setView('summary')"><i class="fa-solid fa-chart-pie"></i><span>サマリー</span></button>
   </div>`;
 
   document.getElementById("app").innerHTML = html;
