@@ -26,6 +26,10 @@ function generateWeek(macPct) {
         fatLeft = FAT_T - dayFat;
       let items = [];
       const sz = mealSize[slot];
+      if (sz === "なし") {
+        plan[d][m] = [];
+        continue;
+      }
       if (isMac && m === 1) {
         const pool = DB.mcdonalds.items.filter(
           (i) => (i.meal === "any" || i.meal.includes("lunch")) && i.f <= 15

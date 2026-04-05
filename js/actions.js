@@ -32,7 +32,7 @@ window.openGen = function () {
     document.body.appendChild(o);
   }
   o.className = "overlay open";
-  const sizeOpts = ["控えめ", "普通", "多め"];
+  const sizeOpts = ["なし", "控えめ", "普通", "多め"];
   const sizeLabels = { breakfast: "朝食", lunch: "昼食", dinner: "夕食" };
   let sizeHTML = `<div class="size-section"><div class="freq-label" style="margin-bottom:10px">食事量</div>`;
   MKEYS.forEach((k) => {
@@ -43,7 +43,7 @@ window.openGen = function () {
     sizeHTML += `</div></div>`;
   });
   sizeHTML += `</div>`;
-  o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}<div class="sheet-targets"><span>脂質 ${FAT_T}g</span><span>食物繊維 ${FIB_T}g</span><span>${CAL_T}kcal</span></div><div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成する</button></div></div>`;
+  o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}<div class="sheet-targets"><span>脂質 ${FAT_T}g</span><span>食物繊維 ${FIB_T}g</span><span>${CAL_T}kcal</span></div><div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成</button></div></div>`;
 };
 
 window.setMealSize = function (slot, size) {
