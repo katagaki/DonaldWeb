@@ -70,7 +70,7 @@ function render() {
       const t = totals(i),
         a = activeDay === i,
         has = t.cal > 0,
-        ok = t.f <= FAT_T;
+        ok = t.f <= targets.f;
       html += `<button class="sidebar-item${a ? " active" : ""}" onclick="setDay(${i})">
         <span style="width:20px;text-align:center;font-weight:600">${d}</span>${d}曜日
         ${has ? `<span class="sidebar-day-indicator" style="background:${ok ? "var(--green)" : "var(--red)"}"></span>` : ""}
@@ -122,7 +122,7 @@ function renderPlanView(dt) {
     const t = totals(i),
       a = activeDay === i,
       has = t.cal > 0,
-      ok = t.f <= FAT_T;
+      ok = t.f <= targets.f;
     html += `<button class="day-tab${a ? " active" : ""}" onclick="setDay(${i})">${d}${has ? `<div class="day-dot" style="background:${ok ? "var(--green)" : "var(--red)"}"></div>` : ""}</button>`;
   });
   html += `</div>`;
@@ -132,10 +132,11 @@ function renderPlanView(dt) {
 
   // Macro card
   html += `<div class="card macro-card"><div class="macro-label">栄養バランス</div>`;
-  html += macroBarHTML("カロリー", dt.cal, CAL_T, "kcal", "var(--blue)");
-  html += macroBarHTML("脂質", dt.f, FAT_T, "g", "var(--orange)");
-  html += macroBarHTML("タンパク質", dt.p, PRO_T, "g", "var(--green)");
-  html += macroBarHTML("食物繊維", dt.fi, FIB_T, "g", "var(--teal)");
+  html += macroBarHTML("カロリー", dt.cal, targets.cal, "kcal", "var(--blue)");
+  html += macroBarHTML("脂質", dt.f, targets.f, "g", "var(--orange)");
+  html += macroBarHTML("タンパク質", dt.p, targets.p, "g", "var(--green)");
+  html += macroBarHTML("炭水化物", dt.c, targets.c, "g", "var(--indigo)");
+  html += macroBarHTML("食物繊維", dt.fi, targets.fi, "g", "var(--teal)");
   html += `</div>`;
 
   // Meal slots
@@ -207,18 +208,19 @@ function renderSummaryView() {
   });
   n = n || 1;
   html += `<div class="card summary-card"><div class="macro-label">週間平均 (${n}日)</div>`;
-  html += macroBarHTML("カロリー", cal / n, CAL_T, "kcal", "var(--blue)");
-  html += macroBarHTML("脂質", f / n, FAT_T, "g", "var(--orange)");
-  html += macroBarHTML("タンパク質", p / n, PRO_T, "g", "var(--green)");
-  html += macroBarHTML("食物繊維", fi / n, FIB_T, "g", "var(--teal)");
+  html += macroBarHTML("カロリー", cal / n, targets.cal, "kcal", "var(--blue)");
+  html += macroBarHTML("脂質", f / n, targets.f, "g", "var(--orange)");
+  html += macroBarHTML("タンパク質", p / n, targets.p, "g", "var(--green)");
+  html += macroBarHTML("炭水化物", c / n, targets.c, "g", "var(--indigo)");
+  html += macroBarHTML("食物繊維", fi / n, targets.fi, "g", "var(--teal)");
   html += `</div>`;
 
   // Breakdown
   html += `<div class="macro-label" style="padding:0 2px;margin-bottom:8px">日別</div><div class="card breakdown-list">`;
   DAYS.forEach((d, i) => {
     const t = totals(i),
-      pct = Math.min((t.f / FAT_T) * 100, 100),
-      over = t.f > FAT_T;
+      pct = Math.min((t.f / targets.f) * 100, 100),
+      over = t.f > targets.f;
     html += `<button class="breakdown-row" onclick="setDay(${i});setView('plan')"><span class="breakdown-day">${d}</span><div class="breakdown-bar"><div class="breakdown-fill" style="width:${pct}%;background:${over ? "var(--red)" : "var(--orange)"}"></div></div><span class="breakdown-val" style="color:${over ? "var(--red)" : "var(--text3)"}">${t.cal > 0 ? Math.round(t.cal) + "kcal 脂質" + t.f.toFixed(0) + "g" : "--"}</span></button>`;
   });
   html += `</div>`;

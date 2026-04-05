@@ -23,7 +23,7 @@ function generateWeek(macPct) {
     const isMac = macDays.includes(d);
     for (let m = 0; m < 3; m++) {
       const slot = MKEYS[m],
-        fatLeft = FAT_T - dayFat;
+        fatLeft = targets.f - dayFat;
       let items = [];
       const sz = mealSize[slot];
       if (sz === "なし") {

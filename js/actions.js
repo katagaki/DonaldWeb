@@ -43,7 +43,19 @@ window.openGen = function () {
     sizeHTML += `</div></div>`;
   });
   sizeHTML += `</div>`;
-  o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}<div class="sheet-targets"><span>脂質 ${FAT_T}g</span><span>食物繊維 ${FIB_T}g</span><span>${CAL_T}kcal</span></div><div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成</button></div></div>`;
+  const tRows = [
+    { k: "cal", l: "カロリー", unit: "kcal", step: 50 },
+    { k: "f", l: "脂質", unit: "g", step: 5 },
+    { k: "p", l: "タンパク質", unit: "g", step: 5 },
+    { k: "c", l: "炭水化物", unit: "g", step: 10 },
+    { k: "fi", l: "食物繊維", unit: "g", step: 1 },
+  ];
+  let targetsHTML = `<div class="targets-section"><div class="freq-label" style="margin-bottom:10px">目標値</div>`;
+  tRows.forEach((t) => {
+    targetsHTML += `<div class="target-row"><span class="target-label">${t.l}</span><div class="target-input-wrap"><button class="target-step-btn" onclick="adjustTarget('${t.k}',-${t.step})">−</button><input class="target-input" type="number" value="${targets[t.k]}" step="${t.step}" onchange="setTarget('${t.k}',+this.value)"><button class="target-step-btn" onclick="adjustTarget('${t.k}',${t.step})">+</button><span class="target-unit">${t.unit}</span></div></div>`;
+  });
+  targetsHTML += `<button class="target-reset-btn" onclick="resetTargets()">デフォルトに戻す</button></div>`;
+  o.innerHTML = `<div class="overlay-bg" onclick="closeGen()"></div><div class="sheet"><div class="sheet-handle"></div><h3>自動プラン生成</h3><div class="freq-row"><span class="freq-label">マック頻度</span><span class="freq-val" id="freqVal">${macFreq === 0 ? "なし" : macFreq <= 15 ? "週1回" : macFreq <= 30 ? "週2回" : "週3回"}</span></div><input type="range" min="0" max="45" value="${macFreq}" oninput="macFreq=+this.value;document.getElementById('freqVal').textContent=macFreq===0?'なし':macFreq<=15?'週1回':macFreq<=30?'週2回':'週3回'"><div class="freq-hints"><span>なし</span><span>週3回</span></div>${sizeHTML}${targetsHTML}<div class="sheet-btns"><button class="btn-clear" onclick="plan=DAYS.map(()=>MEALS.map(()=>[]));savePlan();closeGen();render()">クリア</button><button class="btn-generate" onclick="plan=generateWeek(macFreq);savePlan();closeGen();render()">生成</button></div></div>`;
 };
 
 window.setMealSize = function (slot, size) {
@@ -82,4 +94,26 @@ window.addPickerItem = function (item) {
   savePlan();
   closePicker();
   render();
+};
+
+window.setTarget = function (key, val) {
+  if (val > 0) {
+    targets[key] = val;
+    saveTargets();
+  }
+};
+
+window.adjustTarget = function (key, delta) {
+  const v = targets[key] + delta;
+  if (v > 0) {
+    targets[key] = v;
+    saveTargets();
+    openGen();
+  }
+};
+
+window.resetTargets = function () {
+  targets = { ...TARGETS_DEFAULT };
+  saveTargets();
+  openGen();
 };
