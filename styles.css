@@ -176,10 +176,9 @@ body {
 .btn-settings-mobile:active {
   color: var(--blue);
 }
-.mobile-header-btns {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.mobile-header-title {
+  flex: 1;
+  text-align: center;
 }
 
 /* Sidebar */
