@@ -1,0 +1,292 @@
+{
+  "label": "UCC",
+  "color": "#8B1A1A",
+  "items": [
+    {
+      "id": "uc1",
+      "name": "BLACK無糖（185g缶）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 0.9,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc2",
+      "name": "BLACK無糖 黒の余韻（275gリキャップ缶）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 1.1,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc3",
+      "name": "BLACK無糖 黒の余韻（375gリキャップ缶）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 1.5,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc4",
+      "name": "BLACK無糖（200ml紙パック）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 1.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc5",
+      "name": "TOTONOU by BLACK無糖（500ml）",
+      "cal": 15,
+      "p": 1.0,
+      "f": 0,
+      "c": 2.7,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc6",
+      "name": "COLD BREW BLACK（500ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 2.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc7",
+      "name": "COLD BREW LATTE（500ml）",
+      "cal": 80,
+      "p": 2.0,
+      "f": 2.0,
+      "c": 13.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc8",
+      "name": "ミルクコーヒー（250g缶）",
+      "cal": 103,
+      "p": 4.0,
+      "f": 1.8,
+      "c": 17.8,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc9",
+      "name": "ミルクコーヒー（200ml紙パック）",
+      "cal": 82,
+      "p": 1.8,
+      "f": 1.2,
+      "c": 16.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc10",
+      "name": "BEANS & ROASTERS カフェラテ（375gリキャップ缶）",
+      "cal": 161,
+      "p": 3.4,
+      "f": 4.1,
+      "c": 27.8,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc11",
+      "name": "BEANS & ROASTERS ミルク好きのラテ（450ml）",
+      "cal": 126,
+      "p": 3.6,
+      "f": 3.6,
+      "c": 19.4,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc12",
+      "name": "ブレンドコーヒー（185g缶）",
+      "cal": 28,
+      "p": 0.9,
+      "f": 0,
+      "c": 5.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc13",
+      "name": "ブレンドコーヒー 微糖（185g缶）",
+      "cal": 24,
+      "p": 0.9,
+      "f": 0,
+      "c": 4.3,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc14",
+      "name": "ブレンドコーヒー カフェ・オ・レ（185g缶）",
+      "cal": 26,
+      "p": 1.1,
+      "f": 0.7,
+      "c": 3.9,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc15",
+      "name": "THE COFFEE コク際立つ微糖（260gリキャップ缶）",
+      "cal": 44,
+      "p": 1.0,
+      "f": 0.8,
+      "c": 8.3,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc16",
+      "name": "THE COFFEE ミルク際立つカフェオレ（260gリキャップ缶）",
+      "cal": 83,
+      "p": 1.6,
+      "f": 2.1,
+      "c": 14.6,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc17",
+      "name": "上島珈琲店 ミルク珈琲（270ml）",
+      "cal": 165,
+      "p": 1.9,
+      "f": 7.3,
+      "c": 22.7,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc18",
+      "name": "上島珈琲店 黒糖入りミルク珈琲（270ml）",
+      "cal": 178,
+      "p": 2.2,
+      "f": 7.0,
+      "c": 26.7,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc19",
+      "name": "職人の珈琲 無糖（900ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 2.7,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc20",
+      "name": "職人の珈琲 低糖（900ml）",
+      "cal": 54,
+      "p": 0,
+      "f": 0,
+      "c": 12.6,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc21",
+      "name": "職人の珈琲 ミルクに最適（900ml）",
+      "cal": 126,
+      "p": 0,
+      "f": 0,
+      "c": 31.5,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc22",
+      "name": "おいしいカフェインレスコーヒー 無糖（900ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 3.6,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc23",
+      "name": "ゴールドスペシャル 無糖（1000ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 6.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc24",
+      "name": "ゴールドスペシャル 甘さひかえめ（1000ml）",
+      "cal": 200,
+      "p": 0,
+      "f": 0,
+      "c": 49.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc25",
+      "name": "上島珈琲店 アイスコーヒー無糖（1000ml）",
+      "cal": 0,
+      "p": 0,
+      "f": 0,
+      "c": 5.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    },
+    {
+      "id": "uc26",
+      "name": "上島珈琲店 アイスコーヒー微糖（1000ml）",
+      "cal": 160,
+      "p": 0,
+      "f": 0,
+      "c": 39.0,
+      "fi": 0,
+      "cat": "drink",
+      "meal": "any"
+    }
+  ]
+}
