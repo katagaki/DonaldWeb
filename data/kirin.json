@@ -52,7 +52,7 @@
       "name": "FIRE ワンデイ ラテ微糖（600ml）",
       "cal": 114,
       "p": 4.2,
-      "f": 3.0,
+      "f": 3,
       "c": 17.4,
       "fi": 0,
       "cat": "drink",
@@ -75,7 +75,7 @@
       "cal": 140,
       "p": 0,
       "f": 0,
-      "c": 35.0,
+      "c": 35,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -117,9 +117,9 @@
       "id": "ki11",
       "name": "午後の紅茶 おいしい無糖 ミルクティー（500ml）",
       "cal": 50,
-      "p": 3.0,
-      "f": 3.0,
-      "c": 3.0,
+      "p": 3,
+      "f": 3,
+      "c": 3,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -163,7 +163,7 @@
       "cal": 92,
       "p": 0,
       "f": 0,
-      "c": 23.0,
+      "c": 23,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -218,7 +218,7 @@
       "cal": 170,
       "p": 0,
       "f": 0,
-      "c": 42.0,
+      "c": 42,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -227,7 +227,7 @@
       "id": "ki21",
       "name": "トロピカーナ 100% オレンジ（330ml）",
       "cal": 172,
-      "p": 3.0,
+      "p": 3,
       "f": 0,
       "c": 39.9,
       "fi": 0,
@@ -240,7 +240,7 @@
       "cal": 140,
       "p": 0,
       "f": 0,
-      "c": 35.0,
+      "c": 35,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -251,7 +251,7 @@
       "cal": 118,
       "p": 1.5,
       "f": 0,
-      "c": 28.0,
+      "c": 28,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -275,18 +275,18 @@
       "f": 0,
       "c": 9.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
       "id": "ki26",
       "name": "一番搾り（500ml缶）",
       "cal": 200,
-      "p": 2.0,
+      "p": 2,
       "f": 0,
       "c": 13.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -297,18 +297,18 @@
       "f": 0,
       "c": 2.1,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
       "id": "ki28",
       "name": "一番搾り 糖質ゼロ（500ml缶）",
       "cal": 145,
-      "p": 1.0,
+      "p": 1,
       "f": 0,
-      "c": 3.0,
+      "c": 3,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -319,7 +319,7 @@
       "f": 0,
       "c": 10.9,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -330,7 +330,7 @@
       "f": 0,
       "c": 15.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -341,18 +341,18 @@
       "f": 0,
       "c": 7.7,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
       "id": "ki32",
       "name": "本麒麟（500ml缶）",
       "cal": 210,
-      "p": 2.0,
+      "p": 2,
       "f": 0,
-      "c": 11.0,
+      "c": 11,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -363,18 +363,18 @@
       "f": 0,
       "c": 9.8,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
       "id": "ki34",
       "name": "のどごし＜生＞（500ml缶）",
       "cal": 190,
-      "p": 1.0,
+      "p": 1,
       "f": 0,
-      "c": 14.0,
+      "c": 14,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -383,9 +383,9 @@
       "cal": 102,
       "p": 0.4,
       "f": 0,
-      "c": 3.0,
+      "c": 3,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -396,7 +396,7 @@
       "f": 0,
       "c": 4.3,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -407,7 +407,7 @@
       "f": 0,
       "c": 0.4,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -418,7 +418,7 @@
       "f": 0,
       "c": 0.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -438,7 +438,7 @@
       "cal": 45,
       "p": 0.5,
       "f": 0,
-      "c": 11.0,
+      "c": 11,
       "fi": 0,
       "cat": "drink",
       "meal": "any"
@@ -451,7 +451,7 @@
       "f": 0,
       "c": 12.6,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -460,9 +460,9 @@
       "cal": 220,
       "p": 0,
       "f": 0,
-      "c": 18.0,
+      "c": 18,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -473,7 +473,7 @@
       "f": 0,
       "c": 15.4,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -482,9 +482,9 @@
       "cal": 235,
       "p": 0,
       "f": 0,
-      "c": 22.0,
+      "c": 22,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -495,7 +495,7 @@
       "f": 0,
       "c": 1.9,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -506,7 +506,7 @@
       "f": 0,
       "c": 2.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -517,7 +517,7 @@
       "f": 0,
       "c": 1.9,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -528,7 +528,7 @@
       "f": 0,
       "c": 1.9,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -539,7 +539,7 @@
       "f": 0,
       "c": 2.8,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -550,7 +550,7 @@
       "f": 0,
       "c": 2.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -561,7 +561,7 @@
       "f": 0,
       "c": 2.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -572,7 +572,7 @@
       "f": 0,
       "c": 3.2,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -583,7 +583,7 @@
       "f": 0,
       "c": 9.1,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -594,7 +594,7 @@
       "f": 0,
       "c": 16.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     },
     {
@@ -605,7 +605,7 @@
       "f": 0,
       "c": 9.5,
       "fi": 0,
-      "cat": "drink",
+      "cat": "alcohol",
       "meal": "any"
     }
   ]
