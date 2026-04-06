@@ -1,0 +1,281 @@
+{
+  "label": "ファミマ",
+  "color": "#00A040",
+  "items": [
+    {
+      "id": "fm1",
+      "name": "3色そぼろ&チキン南蛮弁当",
+      "cal": 770,
+      "p": 31.2,
+      "f": 29.2,
+      "c": 96.4,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm2",
+      "name": "特製ダレの炙り焼牛カルビ重",
+      "cal": 702,
+      "p": 19.6,
+      "f": 21.7,
+      "c": 107.3,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm3",
+      "name": "炙り焼　鳥めし弁当（麦飯）",
+      "cal": 616,
+      "p": 31.7,
+      "f": 18.5,
+      "c": 81.9,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm4",
+      "name": "タルタルソースで食べるから揚げ&ハンバーグ弁当",
+      "cal": 831,
+      "p": 30.5,
+      "f": 32.6,
+      "c": 105.6,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm5",
+      "name": "銀鮭西京焼き幕の内弁当",
+      "cal": 530,
+      "p": 16.0,
+      "f": 17.5,
+      "c": 77.9,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm6",
+      "name": "たっぷりごま入り特製ソース！チキンカツ弁当",
+      "cal": 777,
+      "p": 24.1,
+      "f": 33.7,
+      "c": 95.6,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm7",
+      "name": "明太海苔弁当",
+      "cal": 775,
+      "p": 19.7,
+      "f": 22.6,
+      "c": 125.0,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm8",
+      "name": "鶏のうまみ！鶏そぼろ弁当",
+      "cal": 355,
+      "p": 10.7,
+      "f": 6.1,
+      "c": 64.9,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm9",
+      "name": "30種類以上のスパイスが決め手のこだわりカレー",
+      "cal": 564,
+      "p": 12.7,
+      "f": 11.5,
+      "c": 103.6,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm10",
+      "name": "炙り焼鶏つくねごはん（軟骨入り）",
+      "cal": 456,
+      "p": 18.1,
+      "f": 12.8,
+      "c": 68.2,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm11",
+      "name": "だし香る　みぞれチキンカツごはん",
+      "cal": 584,
+      "p": 19.8,
+      "f": 15.6,
+      "c": 92.0,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm12",
+      "name": "大麦豚のロースかつ丼",
+      "cal": 684,
+      "p": 20.3,
+      "f": 25.0,
+      "c": 95.8,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm13",
+      "name": "醤の旨味がきいた麻婆豆腐ごはん",
+      "cal": 474,
+      "p": 15.0,
+      "f": 12.8,
+      "c": 75.5,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm14",
+      "name": "旨辛仕立て！スタミナ肉そぼろあんかけ飯",
+      "cal": 565,
+      "p": 15.6,
+      "f": 18.5,
+      "c": 85.0,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm15",
+      "name": "スパイシーな味わい！辛旨チキン&ジャンバラヤ",
+      "cal": 642,
+      "p": 18.8,
+      "f": 24.6,
+      "c": 87.0,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm16",
+      "name": "お出汁染み込む　ふんわり玉子の親子丼",
+      "cal": 491,
+      "p": 18.4,
+      "f": 12.6,
+      "c": 76.4,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm17",
+      "name": "デミソースと食べるとろとろたまごのオムライス",
+      "cal": 577,
+      "p": 12.7,
+      "f": 23.8,
+      "c": 78.9,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm18",
+      "name": "コク旨あんかけ丼（麦入りごはん）",
+      "cal": 452,
+      "p": 9.8,
+      "f": 10.9,
+      "c": 80.7,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm19",
+      "name": "チキンとほうれん草のドリア",
+      "cal": 489,
+      "p": 14.7,
+      "f": 14.7,
+      "c": 75.4,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm20",
+      "name": "二段仕込みの炙り焼チキンステーキ弁当",
+      "cal": 601,
+      "p": 29.6,
+      "f": 12.3,
+      "c": 94.4,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm21",
+      "name": "肉の旨味感じる三元豚のロースとんかつ弁当",
+      "cal": 726,
+      "p": 29.3,
+      "f": 23.7,
+      "c": 99.6,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm22",
+      "name": "特製ゆずおろしポン酢で食べる！おろしタツタ弁当",
+      "cal": 781,
+      "p": 25.2,
+      "f": 26.3,
+      "c": 112.1,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm23",
+      "name": "ごま油の香り！ジューシー肉シュウマイ弁当",
+      "cal": 691,
+      "p": 21.0,
+      "f": 28.3,
+      "c": 89.4,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm24",
+      "name": "スパイス香る！ロースかつカレー",
+      "cal": 747,
+      "p": 15.8,
+      "f": 30.0,
+      "c": 104.0,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    },
+    {
+      "id": "fm25",
+      "name": "鉄板焼のでっかいハンバーグ弁当",
+      "cal": 837,
+      "p": 28.5,
+      "f": 38.5,
+      "c": 95.5,
+      "fi": null,
+      "cat": "meal",
+      "meal": "lunch,dinner"
+    }
+  ]
+}
